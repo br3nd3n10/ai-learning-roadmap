@@ -191,12 +191,12 @@ footer button:hover{color:#f87171;border-color:#f87171}
 <main>
 
 <div class="hero">
-  <div class="eyebrow">A Learning Operating System · rev 3 · Aug 2026</div>
+  <div class="eyebrow">A Learning Operating System · rev 4 · Aug 2026</div>
   <h1>Down the stack,<br>to the <em>metal</em> &amp; back.</h1>
-  <p class="sub">From vibe-coding apps that call AI, to understanding what models are, how they're trained, how they're made fast, how they're served from data centers — and across the wider AI landscape. Check things off as you go; progress is saved in this browser.</p>
+  <p class="sub">From vibe-coding apps that call AI, to understanding what models are, how they're trained, how they're made fast, how they're served from data centers, what's actually going on inside them — and across the wider AI landscape. Check things off as you go; progress is saved in this browser.</p>
   <div class="meta-strip">
-    <span>Part 1 core: <b>30 work-weeks ≈ 9–12 mo</b></span>
-    <span>Part 2 breadth: <b>+5–7 mo survey</b></span>
+    <span>Part 1 core: <b>34 work-weeks ≈ 11–14 mo</b></span>
+    <span>Part 2 breadth: <b>+6–8 mo survey</b></span>
     <span>Pace: <b>~1–1.5 hr/day</b></span>
     <span>Cost: <b>almost all free</b></span>
   </div>
@@ -206,12 +206,12 @@ footer button:hover{color:#f87171;border-color:#f87171}
   <div class="cap">The territory — cool user-space above, hot silicon below</div>
   <div class="layer"><span class="sw" style="background:#7dd3fc"></span><span class="lname">L6 · AI PRODUCTS</span><span class="ldesc">apps, agents, RAG, evals</span><span class="lyou">← you are here</span></div>
   <div class="layer"><span class="sw" style="background:#67e8f9"></span><span class="lname">L5 · MODEL APIs</span><span class="ldesc">prompting, context, tools</span><span></span></div>
-  <div class="layer"><span class="sw" style="background:#86efac"></span><span class="lname">L4 · POST-TRAINING</span><span class="ldesc">SFT, RLHF, reasoning RL</span><span></span></div>
-  <div class="layer"><span class="sw" style="background:#fde047"></span><span class="lname">L3 · PRETRAINING</span><span class="ldesc">transformers, data, scale</span><span></span></div>
+  <div class="layer"><span class="sw" style="background:#86efac"></span><span class="lname">L4 · POST-TRAINING</span><span class="ldesc">SFT, RLHF, RLVR, reasoning</span><span></span></div>
+  <div class="layer"><span class="sw" style="background:#fde047"></span><span class="lname">L3 · PRETRAINING</span><span class="ldesc">transformers, MoE, data, scale</span><span></span></div>
   <div class="layer"><span class="sw" style="background:#fbbf24"></span><span class="lname">L2 · FRAMEWORKS</span><span class="ldesc">PyTorch, autograd, backprop</span><span></span></div>
   <div class="layer"><span class="sw" style="background:#fb923c"></span><span class="lname">L1 · KERNELS</span><span class="ldesc">CUDA, Triton, flash attention</span><span></span></div>
   <div class="layer" style="border-bottom:none"><span class="sw" style="background:#f87171"></span><span class="lname">L0 · HARDWARE</span><span class="ldesc">GPUs, NVLink, data centers</span><span></span></div>
-  <div class="xcut">cross-cutting: <b>PRODUCTION OPS</b> — evals-in-CI · monitoring · versioning · rollback (Phase 4.5) &nbsp;·&nbsp; Part 2 branches: vision · diffusion · audio · RL · robotics · causal</div>
+  <div class="xcut">cross-cutting: <b>PRODUCTION OPS</b> — evals-in-CI · monitoring · versioning · rollback (Phase 4.5) &nbsp;·&nbsp; Part 2 branches: vision · diffusion · audio · RL · robotics · causal · alignment</div>
 </div>
 
 <div class="legend">
@@ -291,67 +291,86 @@ footer button:hover{color:#f87171;border-color:#f87171}
 </div></details>
 
 <details class="phase" id="p3">
-<summary><span class="ph-num">PH 3</span><div class="ph-title">How Real LLMs Are Made<small>WEEKS 9–13 · PRETRAINING · DATA · EVALS · POST-TRAINING</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
+<summary><span class="ph-num">PH 3</span><div class="ph-title">How Real LLMs Are Made<small>WEEKS 9–15 · ARCHITECTURE · DATA · EVALS · POST-TRAINING</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
 <div class="ph-body">
 <p class="goal">Goal: from toy GPT to the actual modern pipeline — and the two disciplines that separate rigor from vibes: data work and evaluation design. Note the order: eval design comes BEFORE fine-tuning, on purpose.</p>
 <div class="wk"><h4>Week 9 — The real pretraining recipe</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–4</span>Karpathy — <a href="https://github.com/karpathy/build-nanogpt" target="_blank">build-nanogpt</a> (reproduce GPT-2 124M: mixed precision, LR schedules, real data loading) <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D5–6</span>EleutherAI — <a href="https://blog.eleuther.ai/transformer-math/" target="_blank">Transformer Math 101</a> (params, FLOPs, memory — the arithmetic of scale) <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 10 — Data: the underrated layer</h4><ul class="tasks">
+<div class="wk"><h4>Week 10 — From GPT-2 to 2026: modern architecture + scaling laws</h4><p class="goal">Why this week exists: Phase 2 and Week 9 hand you a GPT-2 — a 2019 design. Everything you actually use has moved on, and the differences are not cosmetic. Skip this and Phase 6's inference economics won't land, because you won't know what a KV cache is.</p><ul class="tasks">
+<li class="task"><span class="body"><span class="d">DAYS 1–2</span>Raschka — <a href="https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison" target="_blank">The Big LLM Architecture Comparison</a> (DeepSeek-V3 → Kimi K2 in one article: RoPE, RMSNorm, SwiGLU, GQA/MLA, sliding-window &amp; hybrid attention — the whole delta from the model you built) <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAYS 3–4</span>Mixture-of-Experts: <a href="https://huggingface.co/blog/moe" target="_blank">HF — MoE Explained</a> + <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts" target="_blank">Grootendorst — A Visual Guide to MoE</a>. How most frontier models are now built: total params ≫ active params — the fact that drives training cost, serving cost, and why "how big is it?" stopped being one number <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 5</span><b>The KV cache</b> — what it holds, why it grows with context × batch, and why it (not the weights) usually decides how many users fit on a GPU. Compute one by hand for a model you use: <code>2 × layers × kv_heads × head_dim × seq_len × batch × bytes</code>. This is the object Weeks 32–33 are really about <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 6</span>Scaling laws — <a href="https://epoch.ai/blog/scaling-laws-literature-review" target="_blank">Epoch AI's literature review</a>, then the shape of the argument: <a href="https://arxiv.org/abs/2001.08361" target="_blank">Kaplan (2020)</a> → <a href="https://arxiv.org/abs/2203.15556" target="_blank">Chinchilla (2022)</a> → the modern correction that <i>inference</i> cost sets the real optimum (<a href="https://www.harmdevries.com/post/model-size-vs-compute-overhead/" target="_blank">Go smol or go home</a>). The bridge from Layer 3 to Layer 0: it's why data centers are the size they are <span class="tag c">CORE</span></span></li>
+</ul></div>
+<div class="callout"><span class="ct">Milestone · same day</span><p>Write ~200 words on <i>"how does the model I use daily differ from the GPT-2 I built, and why does each difference exist?"</i> If you can't, re-read before moving on. Architecture literacy is what makes every later phase readable.</p></div>
+<div class="wk"><h4>Week 11 — Data: the underrated layer</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span><a href="https://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1" target="_blank">FineWeb technical report</a> — how a real pretraining dataset is built: filtering, dedup, quality classifiers, validated with ablations <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 3</span><a href="https://huggingface.co/learn/llm-course/en/chapter5/1" target="_blank">HF LLM Course data-processing chapters</a> (the <code>datasets</code> library in practice) <span class="tag s">SURVEY</span></span></li>
 <li class="task"><span class="body"><span class="d">D4–5</span>Hands-on: take a messy raw text corpus and build a cleaning pipeline — dedup, filter, split train/val/test properly (if scraping, check terms &amp; robots.txt first). Understand <b>leakage</b> and <b>benchmark contamination</b> <span class="tag c">CORE</span></span></li>
-<li class="task"><span class="body"><span class="d">DAY 6</span>Dataset licensing &amp; provenance basics — what you can legally train on, why PII in training data matters <span class="tag s">SURVEY</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 6</span>Dataset licensing &amp; provenance basics — what you can legally train on, why PII in training data matters. Then <b>synthetic data</b>: increasingly the majority of post-training data, and where model collapse and quiet contamination both hide <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 11 — Evaluation design (before you fine-tune anything)</h4><ul class="tasks">
+<div class="wk"><h4>Week 12 — Evaluation design (before you fine-tune anything)</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span><a href="https://github.com/huggingface/evaluation-guidebook" target="_blank">LLM Evaluation Guidebook</a> (benchmarks, LLM-as-judge, contamination) <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 3</span>Hamel Husain — <a href="https://hamel.dev/blog/posts/evals/index.html" target="_blank">Your AI Product Needs Evals</a> (the mindset belongs here) <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D4–6</span>Build the eval for next week's project, <i>before touching training</i>: frozen held-out test set, baseline of the un-tuned model, 3–5 failure categories. Freeze it — no edits while the experiment runs (new failures → a versioned eval-v2 for the <i>next</i> experiment) <span class="tag c">CORE</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 12 — Fine-tuning in practice</h4><ul class="tasks">
+<div class="wk"><h4>Week 13 — Fine-tuning in practice</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span><a href="https://huggingface.co/learn/llm-course/en/chapter1/1" target="_blank">HF LLM Course fine-tuning chapters</a> <span class="tag s">SURVEY</span></span></li>
-<li class="task"><span class="body"><span class="d">D3–6</span><a href="https://unsloth.ai/docs/get-started/fine-tuning-llms-guide" target="_blank">Unsloth fine-tuning guide</a> + free Colab: LoRA/QLoRA an open model on your Week-10 dataset, judged against Week 11's frozen eval <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">D3–6</span><a href="https://unsloth.ai/docs/get-started/fine-tuning-llms-guide" target="_blank">Unsloth fine-tuning guide</a> + free Colab: LoRA/QLoRA an open model on your Week-11 dataset, judged against Week 12's frozen eval <span class="tag c">CORE</span></span></li>
 </ul></div>
 <div class="callout"><span class="ct">Milestone — the full honest loop</span><p>data pipeline → frozen eval → baseline → fine-tune → re-measure → write-up <b>including what did NOT improve</b>. Most people fake this loop; you're building the muscle to do it for real.</p></div>
-<div class="wk"><h4>Week 13 — Post-training: SFT → RLHF → reasoning</h4><ul class="tasks">
-<li class="task"><span class="body"><span class="d">D1–3</span><a href="https://huggingface.co/learn/smol-course" target="_blank">smol-course</a> — ~20 hr, six units; GPU recommended. Do instruction-tuning + preference-alignment units now; rest later <span class="tag s">SURVEY</span></span></li>
-<li class="task"><span class="body"><span class="d">DAY 4</span>Nathan Lambert — <a href="https://rlhfbook.com/" target="_blank">RLHF Book</a> (intro + reward models + DPO chapters) <span class="tag s">SURVEY</span></span></li>
-<li class="task"><span class="body"><span class="d">D5–6</span>Raschka — <a href="https://magazine.sebastianraschka.com/p/understanding-reasoning-llms" target="_blank">Understanding Reasoning LLMs</a> <span class="tag c">CORE</span> + skim the <a href="https://arxiv.org/pdf/2501.12948" target="_blank">DeepSeek-R1 paper</a> <span class="tag s">SURVEY</span> (precision: <b>R1-Zero</b> = pure-RL reasoning; production <b>R1</b> used cold-start data + multi-stage training) + Anthropic — <a href="https://www.anthropic.com/research/mapping-mind-language-model" target="_blank">Mapping the Mind of an LLM</a> <span class="tag s">SURVEY</span></span></li>
+<div class="wk"><h4>Week 14 — Post-training I: SFT → preference alignment</h4><ul class="tasks">
+<li class="task"><span class="body"><span class="d">D1–4</span><a href="https://huggingface.co/learn/smol-course" target="_blank">smol-course</a> — ~20 hr, six units; GPU recommended. Do instruction-tuning + preference-alignment units now; rest later <span class="tag s">SURVEY</span></span></li>
+<li class="task"><span class="body"><span class="d">D5–6</span>Nathan Lambert — <a href="https://rlhfbook.com/" target="_blank">RLHF Book</a> (intro + reward models + DPO chapters). Know why DPO exists and where it stops being enough <span class="tag c">CORE</span></span></li>
 </ul></div>
+<div class="wk"><h4>Week 15 — Post-training II: reasoning + RL with verifiable rewards</h4><p class="goal">Why this got its own week: post-training is where differentiation happens now, and RLVR is the fastest-moving layer in the entire stack. It's also the direct answer to "how did reasoning models get good," which one skimmed paper cannot give you.</p><ul class="tasks">
+<li class="task"><span class="body"><span class="d">D1–2</span>Raschka — <a href="https://magazine.sebastianraschka.com/p/understanding-reasoning-llms" target="_blank">Understanding Reasoning LLMs</a> + the <a href="https://arxiv.org/pdf/2501.12948" target="_blank">DeepSeek-R1 paper</a> (precision: <b>R1-Zero</b> = reasoning from pure RL with verifiable rewards; production <b>R1</b> used cold-start data + multi-stage training), then <a href="https://rlhfbook.com/c/14-reasoning.html" target="_blank">RLHF Book ch. 14 — Reasoning &amp; RLVR</a> for the mechanics <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 3</span><b>GRPO</b> — how it differs from PPO (no learned value model; advantage estimated from a group of sampled completions) and why that made RL post-training cheap enough to spread. <a href="https://huggingface.co/docs/trl/grpo_trainer" target="_blank">TRL's GRPO Trainer docs</a> are the concrete reference <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">D4–5</span><b>Hands-on</b> — run a small GRPO job on a <i>verifiable</i> task (math with a checkable answer, or code with a passing test) via <a href="https://docs.unsloth.ai/basics/reinforcement-learning-rl-guide" target="_blank">Unsloth's RL guide</a> free Colab (~$5–20). The point is not a good model; it's watching a reward curve respond to a reward function you wrote <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 6</span><b>Environments &amp; reward hacking</b> — skim <a href="https://github.com/huggingface/open-r1" target="_blank">open-r1</a> and <a href="https://github.com/willccbb/verifiers" target="_blank">verifiers</a> for how RL environments are structured, then think adversarially: for the reward you wrote on Day 4, what is the laziest policy that scores well without solving the task? Write it down. Reward hacking is the field's central practical problem and you should meet it with your hands on a real reward <span class="tag c">CORE</span></span></li>
+</ul></div>
+<div class="callout note"><span class="ct">If this hooks you</span><p>Track D (Part 2) is the proper RL foundation underneath all of this — and taking it <i>after</i> this week means every algorithm arrives with a reason to exist.</p></div>
 <div class="callout note"><span class="ct">Go deeper</span><p><a href="https://cs336.stanford.edu/spring2025" target="_blank">Stanford CS336</a> — the rigorous university version of this phase <span class="tag r">REF</span> · Raschka's <a href="https://github.com/rasbt/LLMs-from-scratch" target="_blank">Build a Large Language Model (From Scratch)</a> ~$40 <span class="tag r">REF</span></p></div>
 </div></details>
 
 <details class="phase" id="p4">
-<summary><span class="ph-num">PH 4</span><div class="ph-title">AI Engineering, Done Rigorously<small>WEEKS 14–19 · YOUR HOME TURF, UPGRADED</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
+<summary><span class="ph-num">PH 4</span><div class="ph-title">AI Engineering, Done Rigorously<small>WEEKS 16–22 · YOUR HOME TURF, UPGRADED</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
 <div class="ph-body">
 <p class="goal">Goal: transform vibe-coding into engineering: prompting as a discipline, RAG, agents, evals, and security. Spine for the whole phase: Chip Huyen — <a href="https://github.com/chiphuyen/aie-book" target="_blank">AI Engineering</a> (book ~$45, or free blog + repo) — a chapter or two per week alongside the work below.</p>
-<div class="wk"><h4>Week 14 — The right mental model</h4><ul class="tasks">
+<div class="wk"><h4>Week 16 — The right mental model</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span><a href="https://www.oreilly.com/radar/what-we-learned-from-a-year-of-building-with-llms-part-i/" target="_blank">"What We Learned from a Year of Building with LLMs"</a> Parts I–III <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 3</span>Anthropic — <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank">Building Effective Agents</a> <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 4</span>Anthropic — <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank">Effective Context Engineering for AI Agents</a> <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 5</span>Chip Huyen — <a href="https://huyenchip.com/2025/01/07/agents.html" target="_blank">Agents</a> <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 6</span>Eugene Yan — <a href="https://eugeneyan.com/writing/llm-patterns/" target="_blank">Patterns for Building LLM-based Systems</a> <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 15 — Prompting as engineering</h4><ul class="tasks">
+<div class="wk"><h4>Week 17 — Working with coding agents (the layer you actually live in)</h4><p class="goal">Why this week exists: you arrived here as a vibe coder, and this roadmap otherwise teaches you to <i>build</i> agents while never teaching you to <i>wield</i> them. This is where you'll spend more hours than on any other item in this plan, and it's a learnable discipline rather than a knack. Compress to 2–3 days if you're already deliberate about it.</p><ul class="tasks">
+<li class="task"><span class="body"><span class="d">D1–2</span><a href="https://www.anthropic.com/engineering/claude-code-best-practices" target="_blank">Anthropic — Claude Code Best Practices</a> and <a href="https://simonwillison.net/2025/Mar/11/using-llms-for-code/" target="_blank">Simon Willison — Using LLMs for code</a>. Read them as engineering doctrine, not tool tips: context curation, tight feedback loops, planning before editing, and treating agent output as a junior engineer's PR rather than an oracle <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 3</span><a href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank">Anthropic — Writing Tools for Agents</a> — connects straight to Week 20's MCP work. Tool design <i>is</i> prompt design <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 4</span><b>Context engineering for code</b> — what your agent can and can't see, why large-repo performance degrades, how instruction files, retrieval and subagents change that. Re-read Week 16's context-engineering piece with a codebase in mind <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">D5–6</span><b>Hands-on, on your own repo</b>: write a project instruction file, define one repeatable agent task, run it three times. Record where it succeeded, where it silently went wrong, and what context would have prevented that. <i>How you'll know it worked:</i> you can state one concrete change that measurably reduced a failure mode <span class="tag c">CORE</span></span></li>
+</ul></div>
+<div class="wk"><h4>Week 18 — Prompting as engineering</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–4</span><a href="https://github.com/anthropics/prompt-eng-interactive-tutorial" target="_blank">Anthropic's Interactive Prompt Engineering Tutorial</a> — graded exercises <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D5–6</span><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank">Claude prompt docs</a> + <a href="https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide" target="_blank">OpenAI's current prompting guide</a> — compare provider doctrines <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 16 — RAG properly</h4><ul class="tasks">
+<div class="wk"><h4>Week 19 — RAG properly</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–4</span>DeepLearning.AI — <a href="https://www.deeplearning.ai/courses/retrieval-augmented-generation-rag/" target="_blank">RAG course</a> (embeddings, hybrid search, chunking, reranking) <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D5–6</span>DLAI — <a href="https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/" target="_blank">Building &amp; Evaluating Advanced RAG</a> <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 17 — Agents + MCP</h4><ul class="tasks">
+<div class="wk"><h4>Week 20 — Agents + MCP</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span>Anthropic Academy — <a href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank">Intro to Model Context Protocol</a> — build an MCP server <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D3–4</span><a href="https://academy.langchain.com/courses/intro-to-langgraph" target="_blank">LangGraph intro course</a> — or build the same patterns raw <span class="tag s">SURVEY</span></span></li>
 <li class="task"><span class="body"><span class="d">D5–6</span>OpenAI — <a href="https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/" target="_blank">A Practical Guide to Building Agents</a> <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 18 — Evals + observability (the differentiator)</h4><ul class="tasks">
+<div class="wk"><h4>Week 21 — Evals + observability (the differentiator)</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–3</span>Husain &amp; Shankar — <a href="https://hamel.dev/blog/posts/evals-faq/" target="_blank">LLM Evals FAQ</a> — free distillation of the course frontier-lab teams take <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D4–5</span>DLAI + Arize — <a href="https://www.deeplearning.ai/courses/evaluating-ai-agents/" target="_blank">Evaluating AI Agents</a> (tracing + evals in code) <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 6</span><a href="https://docs.langchain.com/langsmith/evaluation-concepts" target="_blank">LangSmith evaluation concepts</a> — vocabulary transfers everywhere <span class="tag r">REF</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 19 — Security (non-optional if you build agents)</h4><ul class="tasks">
+<div class="wk"><h4>Week 22 — Security (non-optional if you build agents)</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span><a href="https://genai.owasp.org/llm-top-10/" target="_blank">OWASP Top 10 for LLM Applications</a> — prompt injection, insecure output handling, excessive agency <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D3–4</span>Simon Willison's <a href="https://simonwillison.net/series/prompt-injection/" target="_blank">prompt injection series</a> — esp. the "lethal trifecta"; why injection is unsolved and how to design around it <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 5</span>Tool permissioning &amp; least privilege — audit one of your own agents: what can it <i>actually</i> do if its input is hostile? <span class="tag c">CORE</span></span></li>
@@ -361,42 +380,42 @@ footer button:hover{color:#f87171;border-color:#f87171}
 </div></details>
 
 <details class="phase" id="p45">
-<summary><span class="ph-num">PH 4.5</span><div class="ph-title">Production AI Systems<small>WEEKS 20–22 · DEMOS → PRODUCTS</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
+<summary><span class="ph-num">PH 4.5</span><div class="ph-title">Production AI Systems<small>WEEKS 23–25 · DEMOS → PRODUCTS</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
 <div class="ph-body">
 <p class="goal">Goal: the AI-specific operational layer. Core, not elective, for one reason: you ship apps to real users. (A pure researcher could skip it; you can't.)</p>
-<div class="callout warn"><span class="ct">Gate — answer honestly first</span><p>Can you containerize an API, run tests in CI, manage secrets, deploy a service, authenticate requests? <b>All yes</b> → compress to ~1 week, jump to the Week 22 project. <b>Mostly no</b> → short general software-production bridge first (a solid Docker + CI/CD tutorial for your stack), then return.</p></div>
-<div class="wk"><h4>Week 20 — Reliability patterns for AI apps</h4><ul class="tasks">
+<div class="callout warn"><span class="ct">Gate — answer honestly first</span><p>Can you containerize an API, run tests in CI, manage secrets, deploy a service, authenticate requests? <b>All yes</b> → compress to ~1 week, jump to the Week 25 project. <b>Mostly no</b> → short general software-production bridge first (a solid Docker + CI/CD tutorial for your stack), then return.</p></div>
+<div class="wk"><h4>Week 23 — Reliability patterns for AI apps</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–4</span>Huyen's <a href="https://github.com/chiphuyen/aie-book" target="_blank">AI Engineering</a> serving/optimization chapters, re-read as an operator: streaming, retries/timeouts/idempotency, caching, routing &amp; fallbacks, budget enforcement <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D5–6</span><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" target="_blank">Prompt caching</a> — precision matters: cache-<i>hit input</i> tokens cost ~90% less, but cache <i>writes</i> cost more and output tokens are unaffected. It slashes the repeated-context slice of the bill, not the bill. Measure your app's cacheable fraction <span class="tag c">CORE</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 21 — Versioning, eval gates + monitoring</h4><ul class="tasks">
+<div class="wk"><h4>Week 24 — Versioning, eval gates + monitoring</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–3</span>Prompt/model/dataset/experiment versioning — wire your Phase 4 eval suite into CI as a gate: no prompt or model change ships without evals passing <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D4–6</span>Observability: structured logs/traces/metrics for LLM calls (<a href="https://opentelemetry.io/docs/" target="_blank">OpenTelemetry</a> = durable vocabulary; LangSmith/Braintrust-style tools = implementations). Online quality monitoring &amp; drift <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 22 — The project (on YOUR existing deploy stack)</h4><ul class="tasks">
+<div class="wk"><h4>Week 25 — The project (on YOUR existing deploy stack)</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">ALL</span>Take the Phase 4 capstone app, deployed however you already deploy (Vercel, Railway, a VPS — no new infra required), and add: eval-gated deploys, per-request cost + latency logging, a cache layer, a simulated provider outage (revoke the API key — what does the user see?), and a documented, <i>tested</i> rollback path <span class="tag c">CORE</span></span></li>
 </ul></div>
 <div class="callout"><span class="ct">How you'll know it worked</span><p>You can answer "what does a request cost, what's p95 latency, and what happens when the provider goes down?" with <b>measurements and a demonstration</b>, not guesses. Load-test with <a href="https://k6.io/" target="_blank">k6</a> if you want real numbers.</p></div>
 </div></details>
 
 <details class="phase" id="p5">
-<summary><span class="ph-num">PH 5</span><div class="ph-title">Down to the Metal: GPUs &amp; Kernels<small>WEEKS 23–26 · WHY AI IS FAST OR SLOW</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
+<summary><span class="ph-num">PH 5</span><div class="ph-title">Down to the Metal: GPUs &amp; Kernels<small>WEEKS 26–29 · WHY AI IS FAST OR SLOW</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
 <div class="ph-body">
-<div class="wk"><h4>Week 23 — GPU intuition (highest-leverage week in the roadmap)</h4><ul class="tasks">
+<div class="wk"><h4>Week 26 — GPU intuition (highest-leverage week in the roadmap)</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">DAY 1</span>Horace He — <a href="https://horace.io/brrr_intro.html" target="_blank">Making Deep Learning Go Brrrr</a> (compute-bound vs memory-bound vs overhead) <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D2–3</span>Stephen Jones (NVIDIA) — <a href="https://www.youtube.com/watch?v=3l10o0DYJXg" target="_blank">How GPU Computing Works</a> + <a href="https://www.youtube.com/watch?v=QQceTDjA4f4" target="_blank">How CUDA Programming Works</a> <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D4–6</span>Modal — <a href="https://modal.com/gpu-glossary" target="_blank">GPU Glossary</a> (read linearly once; reference forever after) <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 24 — First CUDA kernels</h4><ul class="tasks">
+<div class="wk"><h4>Week 27 — First CUDA kernels</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">DAY 1</span>NVIDIA — <a href="https://developer.nvidia.com/blog/even-easier-introduction-cuda/" target="_blank">An Even Easier Introduction to CUDA</a> <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D2–6</span><a href="https://www.gpumode.com/lectures" target="_blank">GPU MODE lectures</a> 1–5 (follows the <a href="https://www.oreilly.com/library/view/programming-massively-parallel/9780323984638/" target="_blank">PMPP textbook</a> ~$70 if you want the full spine) <span class="tag c">CORE</span></span></li>
 </ul></div>
 <div class="callout note"><span class="ct">Prereq honesty</span><p>CUDA is C++. Never touched C/C++? Spend 2–3 days on basics first — enough to read pointer syntax. You don't need mastery.</p></div>
-<div class="wk"><h4>Week 25 — Triton: kernels in Python</h4><ul class="tasks">
+<div class="wk"><h4>Week 28 — Triton: kernels in Python</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–4</span><a href="https://triton-lang.org/main/getting-started/tutorials/index.html" target="_blank">Official Triton tutorials</a>: vector add → fused softmax → matmul, benchmarked vs PyTorch <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D5–6</span><a href="https://github.com/rkinas/triton-resources" target="_blank">Triton Puzzles</a> — deliberate practice <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 26 — The famous kernels</h4><ul class="tasks">
+<div class="wk"><h4>Week 29 — The famous kernels</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–3</span>Simon Boehm — <a href="https://siboehm.com/articles/22/CUDA-MMM" target="_blank">How to Optimize a CUDA Matmul Kernel</a> (naive → ~80% of cuBLAS) <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D4–5</span>Gordić — <a href="https://gordicaleksa.medium.com/eli5-flash-attention-5c44017022ad" target="_blank">ELI5: FlashAttention</a> <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 6</span><a href="https://docs.pytorch.org/tutorials/intermediate/torch_compile_tutorial.html" target="_blank">torch.compile tutorial</a> — connects kernels back to everyday PyTorch <span class="tag s">SURVEY</span></span></li>
@@ -406,29 +425,36 @@ footer button:hover{color:#f87171;border-color:#f87171}
 </div></details>
 
 <details class="phase" id="p6">
-<summary><span class="ph-num">PH 6</span><div class="ph-title">Scale: Clusters, Inference, Data Centers<small>WEEKS 27–30 · THOUSANDS OF GPUS, ONE MODEL</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
+<summary><span class="ph-num">PH 6</span><div class="ph-title">Scale: Clusters, Inference, Data Centers<small>WEEKS 30–34 · THOUSANDS OF GPUS, ONE MODEL</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
 <div class="ph-body">
-<div class="wk"><h4>Week 27 — Distributed training</h4><ul class="tasks">
+<div class="wk"><h4>Week 30 — Distributed training I: the theory</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">DAY 1</span>Lilian Weng — <a href="https://lilianweng.github.io/posts/2021-09-25-train-large/" target="_blank">How to Train Really Large Models on Many GPUs</a> (pre-read) <span class="tag s">SURVEY</span></span></li>
 <li class="task"><span class="body"><span class="d">D2–5</span>Hugging Face — <a href="https://huggingface.co/spaces/nanotron/ultrascale-playbook" target="_blank">The Ultra-Scale Playbook</a> — survey-first: Parts 1–2 carefully (data/tensor/pipeline parallelism, ZeRO), skim the rest, return as needed. It's a 10–20 hr book; don't grind it linearly <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 6</span>Sumanth Hegde — <a href="https://sumanthrh.com/post/distributed-and-efficient-finetuning/" target="_blank">Distributed Training &amp; Efficient Finetuning</a> (what FSDP/DeepSpeed actually do) <span class="tag s">SURVEY</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 28 — Inference: the economics of serving</h4><ul class="tasks">
+<div class="wk"><h4>Week 31 — Distributed training II: what actually happens</h4><p class="goal">Why this week exists: Week 30 teaches the parallelism strategies. It does not teach you that large runs fail constantly, that a node dies mid-epoch, that your throughput is 40% of theoretical and you have to find out why. That gap is the difference between reading about training and training.</p><ul class="tasks">
+<li class="task"><span class="body"><span class="d">D1–3</span>Stas Bekman — <a href="https://github.com/stas00/ml-engineering" target="_blank">ML Engineering</a>, selectively: performance/throughput debugging, fault tolerance, training instabilities. The field manual — written from real large-run scar tissue, not theory <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">D4–5</span>HF — <a href="https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook" target="_blank">The Smol Training Playbook</a>: one team's honest end-to-end account of training a real model, <i>including the ablations that failed</i>. Read it right after the theory, while you still believe training is tidy <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 6</span>Low precision + collectives — why <a href="https://pytorch.org/blog/training-using-float8-fsdp2/" target="_blank">FP8 training</a> is standard and what it costs in stability, plus the collectives everything is built from: all-reduce, all-gather, reduce-scatter (<a href="https://github.com/NVIDIA/nccl" target="_blank">NCCL</a>). Name the collectives and "the interconnect is the bottleneck" in Week 34 becomes a concrete claim instead of a slogan <span class="tag s">SURVEY</span></span></li>
+</ul></div>
+<div class="wk"><h4>Week 32 — Inference: the economics of serving</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span>kipply — <a href="https://kipp.ly/transformer-inference-arithmetic/" target="_blank">Transformer Inference Arithmetic</a> (predict latency + cost from first principles) <span class="tag c">CORE</span></span></li>
-<li class="task"><span class="body"><span class="d">D3–4</span>Gordić — <a href="https://www.aleksagordic.com/blog/vllm" target="_blank">Inside vLLM</a> (paged attention, continuous batching, speculative decoding) <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 3</span><b>Prefill vs decode</b> — the single most useful distinction in serving: prefill is compute-bound and parallel, decode is memory-bandwidth-bound and sequential. Nearly every 2026 optimization (continuous batching, chunked prefill, prefill/decode <i>disaggregation</i> onto separate GPU pools, KV-cache-aware routing) follows from those two workloads wanting opposite hardware. <a href="https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/" target="_blank">NVIDIA's inference-optimization guide</a> <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 4</span>Gordić — <a href="https://www.aleksagordic.com/blog/vllm" target="_blank">Inside vLLM</a> (paged attention, continuous batching, speculative decoding) + skim <a href="https://docs.sglang.ai/" target="_blank">SGLang</a> for a second engine's take (RadixAttention / prefix-cache reuse). Two engines is what turns "how vLLM works" into "how serving works" <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D5–6</span>Grootendorst — <a href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization" target="_blank">A Visual Guide to Quantization</a> <span class="tag c">CORE</span> + BentoML <a href="https://bentoml.com/llm/" target="_blank">LLM Inference Handbook</a> <span class="tag r">REF</span></span></li>
 </ul></div>
-<div class="wk"><h4>Week 29 — Serve a model yourself (Capstone #2, heavier rubric)</h4><ul class="tasks">
-<li class="task"><span class="body"><span class="d">D1–4</span>Deploy an open model with vLLM on a rented GPU. Measure tokens/sec; try a quantized version; compute cost-per-million-tokens vs an API <span class="tag c">CORE</span></span></li>
-<li class="task"><span class="body"><span class="d">D5–6</span>Read the original <a href="https://blog.vllm.ai/2023/06/20/vllm.html" target="_blank">vLLM PagedAttention post</a> — it maps onto what you just ran <span class="tag s">SURVEY</span></span></li>
+<div class="wk"><h4>Week 33 — Serve a model yourself (Capstone #2, heavier rubric)</h4><ul class="tasks">
+<li class="task"><span class="body"><span class="d">D1–4</span>Deploy an open model with vLLM on a rented GPU. Measure tokens/sec; try a quantized version; compute cost-per-million-tokens vs an API. Report throughput and latency <b>separately</b> at more than one concurrency level — a single number here is almost always misleading <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">D5–6</span>Read the original <a href="https://blog.vllm.ai/2023/06/20/vllm.html" target="_blank">vLLM PagedAttention post</a> — it maps onto what you just ran, and onto the KV cache you computed by hand back in Week 10 <span class="tag s">SURVEY</span></span></li>
 </ul></div>
 <div class="callout"><span class="ct">Capstone rubric</span><p>Reproducible deploy script, benchmark numbers, cost analysis, and a write-up including failure modes you hit.</p></div>
-<div class="wk"><h4>Week 30 — The physical layer: AI data centers <span class="tag s">SURVEY</span> (elective-but-fascinating — skim freely)</h4><ul class="tasks">
+<div class="wk"><h4>Week 34 — The physical layer: AI data centers <span class="tag s">SURVEY</span> (elective-but-fascinating — skim freely)</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span>Vikram Sekar — <a href="https://www.viksnewsletter.com/p/a-beginners-guide-to-ai-interconnects" target="_blank">Beginner's Guide to AI Datacenter Interconnects</a> (NVLink in the node; InfiniBand/RoCE across nodes)</span></li>
 <li class="task"><span class="body"><span class="d">D3–4</span>SemiAnalysis — <a href="https://newsletter.semianalysis.com/p/datacenter-anatomy-part-1-electrical" target="_blank">Datacenter Anatomy Pt 1: Electrical</a> + <a href="https://newsletter.semianalysis.com/p/datacenter-anatomy-part-2-cooling-systems" target="_blank">Pt 2: Cooling</a> (why 130kW liquid-cooled racks changed everything)</span></li>
-<li class="task"><span class="body"><span class="d">D5–6</span>SemiAnalysis — <a href="https://newsletter.semianalysis.com/p/100000-h100-clusters-power-network" target="_blank">100,000 H100 Clusters</a></span></li>
+<li class="task"><span class="body"><span class="d">D3–4</span>…and SemiAnalysis — <a href="https://newsletter.semianalysis.com/p/100000-h100-clusters-power-network" target="_blank">100,000 H100 Clusters</a></span></li>
+<li class="task"><span class="body"><span class="d">D5–6</span><b>The other architecture</b> — Google's <a href="https://jax-ml.github.io/scaling-book/" target="_blank">How To Scale Your Model</a> (the JAX/TPU book). Everything above this line is NVIDIA-shaped; a meaningful share of the world's training runs on TPUs, and this is the best free treatment of scaling arithmetic anywhere — roofline reasoning, collectives, and answering "how much memory do I need to serve this" from first principles. Read Parts 1–3 even if you never touch a TPU: knowing one alternative exists turns the SemiAnalysis strategy pieces from received wisdom into something you can argue with <span class="tag c">CORE</span></span></li>
 </ul></div>
-<div class="callout"><span class="ct">Milestone</span><p>You can trace a single token's journey: transistor → tensor core → kernel → attention layer → serving engine → API → your app.</p></div>
+<div class="callout"><span class="ct">Milestone</span><p>You can trace a single token's journey: transistor → tensor core → kernel → attention layer → KV cache → serving engine → API → your app.</p></div>
 </div></details>
 
 <details class="phase" id="p7">
@@ -442,7 +468,7 @@ footer button:hover{color:#f87171;border-color:#f87171}
 </ul></div>
 <div class="wk"><h4>Deep-dive menus — pick by interest</h4><ul class="tasks">
 <li class="task"><span class="body">Train real models → <a href="https://cs336.stanford.edu/spring2025" target="_blank">CS336</a> + <a href="https://github.com/karpathy/nanochat" target="_blank">nanochat</a> (~$100 compute trains a full ChatGPT-style pipeline)</span></li>
-<li class="task"><span class="body">Interpretability → <a href="https://learn.arena.education/chapter1_transformer_interp/" target="_blank">ARENA Ch. 1</a> + <a href="https://transformer-circuits.pub/" target="_blank">transformer-circuits.pub</a></span></li>
+<li class="task"><span class="body">Interpretability → <a href="https://learn.arena.education/chapter1_transformer_interp/" target="_blank">ARENA Ch. 1</a> + <a href="https://transformer-circuits.pub/" target="_blank">transformer-circuits.pub</a> — or take Track G properly</span></li>
 <li class="task"><span class="body">Kernels as a craft → PMPP cover-to-cover + GPU MODE kernel competitions</span></li>
 <li class="task"><span class="body">Research literacy → <a href="https://web.stanford.edu/class/cs224n/" target="_blank">CS224N</a> + one paper/week, starting with DeepSeek-R1</span></li>
 </ul></div>
@@ -450,7 +476,8 @@ footer button:hover{color:#f87171;border-color:#f87171}
 
 <!-- ===================== PART 2 ===================== -->
 <div class="part-div" id="part2"><span class="pn">PART 2</span><h2>Breadth Tracks</h2></div>
-<p class="part-intro">Six major fields beyond the LLM stack — chosen because you want them. Each assumes Part 1 through Phase 2; each lists <b>survey</b> (the scheduled path) and <b>mastery</b> (completing every course) estimates. A→E build loosely on each other; F is standalone. Follow your curiosity.</p>
+<p class="part-intro">Seven major fields beyond the LLM stack — chosen because you want them. Each assumes Part 1 through Phase 2; each lists <b>survey</b> (the scheduled path) and <b>mastery</b> (completing every course) estimates. A→E build loosely on each other; F and G are standalone. Follow your curiosity.</p>
+<div class="callout note"><span class="ct">If you only do two tracks</span><p>The two that most change how you think are <b>D</b> (RL — it retroactively explains Phase 3's post-training) and <b>G</b> (alignment &amp; interpretability — the only place you look <i>inside</i> a model rather than at its outputs). Everything else is genuinely a matter of what you find beautiful.</p></div>
 
 <details class="phase" id="ta">
 <summary><span class="ph-num alt">TR A</span><div class="ph-title">Computer Vision &amp; VLMs<small>SURVEY ~4 WKS · MASTERY ~7+ · NEEDS PHASE 2</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
@@ -506,7 +533,7 @@ footer button:hover{color:#f87171;border-color:#f87171}
 </div></details>
 
 <details class="phase" id="td">
-<summary><span class="ph-num alt">TR D</span><div class="ph-title">General Reinforcement Learning<small>SURVEY ~6 WKS · MASTERY ~10+ · NEEDS PHASE 2</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
+<summary><span class="ph-num alt">TR D</span><div class="ph-title">General Reinforcement Learning<small>SURVEY ~6 WKS · MASTERY ~10+ · NEEDS PHASE 2 · BEST AFTER WEEK 15</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
 <div class="ph-body">
 <p class="goal">Bonus: retroactively deepens everything from Phase 3 on RLHF and reasoning models.</p>
 <div class="wk"><h4>Weeks D1–2 — Foundations</h4><ul class="tasks">
@@ -567,8 +594,27 @@ footer button:hover{color:#f87171;border-color:#f87171}
 </ul></div>
 </div></details>
 
+<details class="phase" id="tg">
+<summary><span class="ph-num alt">TR G</span><div class="ph-title">Alignment &amp; Interpretability<small>SURVEY ~4 WKS · MASTERY ~10+ · NEEDS PHASE 2 (3 RECOMMENDED)</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
+<div class="ph-body">
+<p class="goal">Phase 4's Week 22 secures your <i>application</i> against hostile input. Nothing else in this roadmap asks whether the <i>model</i> is doing what you think — or lets you look inside one and check. This is also the track most likely to change what you believe about the rest of the stack, because it's where you find out how much of "the model reasons" describes behaviour rather than mechanism.</p>
+<div class="wk"><h4>Week G1 — The problem, stated precisely</h4><ul class="tasks">
+<li class="task"><span class="body"><a href="https://aisafetyfundamentals.com/alignment/" target="_blank">AI Safety Fundamentals — Alignment Course</a> (free, well-curated; ~4–5 weeks in full — do the first units now). Vocabulary and honest problem statements: specification vs. robustness, reward hacking (you met it in Week 15 with your hands), scalable oversight, dangerous-capability evals. Read it as an engineer, skeptically — the field contains both rigorous work and unfalsifiable argument, and telling them apart is part of the skill <span class="tag c">CORE</span></span></li>
+</ul></div>
+<div class="wk"><h4>Week G2 — Looking inside</h4><ul class="tasks">
+<li class="task"><span class="body">Anthropic — <a href="https://www.anthropic.com/research/mapping-mind-language-model" target="_blank">Mapping the Mind of a Large Language Model</a> (features, superposition, dictionary learning) <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><a href="https://transformer-circuits.pub/" target="_blank">transformer-circuits.pub</a> for the primary sources <span class="tag s">SURVEY</span></span></li>
+<li class="task"><span class="body">Neel Nanda — <a href="https://www.neelnanda.io/mechanistic-interpretability/getting-started" target="_blank">Getting Started in Mech Interp</a> — the concrete on-ramp, and an honest account of what the field can and can't currently do <span class="tag c">CORE</span></span></li>
+</ul></div>
+<div class="wk"><h4>Weeks G3–4 — Hands-on</h4><ul class="tasks">
+<li class="task"><span class="body"><a href="https://learn.arena.education/chapter1_transformer_interp/" target="_blank">ARENA Ch. 1: Transformer Interpretability</a> — the real curriculum, and the reason Phase 2 was non-negotiable: you'll be indexing into activations of a transformer you already understand. Induction heads + activation patching at minimum <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><b>Project:</b> take a small open model and localize one specific behaviour — find the heads or features responsible, then intervene to break or strengthen it. <i>How you'll know it worked:</i> a causal claim backed by an ablation, not a correlation backed by a pretty plot. State explicitly what your intervention does <i>not</i> prove <span class="tag c">CORE</span></span></li>
+</ul></div>
+<div class="callout note"><span class="ct">Go deeper</span><p>The rest of ARENA (RL and evals chapters) · Anthropic's <a href="https://www.anthropic.com/research/introspection" target="_blank">introspection research</a> and model-organisms work for where the frontier actually is · <a href="https://www.alignmentforum.org/" target="_blank">Alignment Forum</a> for the working discourse (read critically).</p></div>
+</div></details>
+
 <div class="part-div" id="further"><span class="pn">POINTERS</span><h2>Further Specializations</h2></div>
-<p class="part-intro">Fields this roadmap deliberately doesn't cover — each its own world. If one calls to you, ask Claude and we'll build a track: <b>Recommender systems</b> (Eugene Yan writes well on this) · <b>Search &amp; learning-to-rank</b> · <b>Time-series forecasting</b> · <b>Graph neural networks</b> · <b>Bayesian/probabilistic ML</b> · <b>Classical planning &amp; symbolic AI</b> · <b>Edge AI / TinyML</b> · <b>Privacy-preserving &amp; federated learning</b>.</p>
+<p class="part-intro">Fields this roadmap deliberately doesn't cover — each its own world. If one calls to you, ask Claude and we'll build a track: <b>Recommender systems</b> (Eugene Yan writes well on this) · <b>Search &amp; learning-to-rank</b> · <b>Time-series forecasting</b> · <b>Graph neural networks</b> · <b>Bayesian/probabilistic ML</b> · <b>Classical planning &amp; symbolic AI</b> · <b>Edge AI / TinyML</b> · <b>Privacy-preserving &amp; federated learning</b> · <b>Alternative architectures</b> (state-space models/Mamba, linear &amp; hybrid attention — Week 10 tells you why the transformer's quadratic attention and growing KV cache are the pressure these try to relieve).</p>
 
 <!-- ===================== HOW TO USE ===================== -->
 <div class="part-div" id="howto"><span class="pn">PROTOCOL</span><h2>How to Use This Plan</h2></div>
@@ -577,10 +623,11 @@ footer button:hover{color:#f87171;border-color:#f87171}
 <li><b>Core &gt; Survey &gt; Reference is the pressure valve.</b> Behind schedule? Surveys become skims, references get skipped. The CORE spine is non-negotiable; everything else flexes.</li>
 <li><b>Projects &gt; completion.</b> Skipping a week of videos to finish a milestone is always the right trade.</li>
 <li><b>When stuck, switch resources, not topics.</b> Every topic has 2–3 alternative explainers in the library below.</li>
-<li><b>Dependencies:</b> 0 → 1 → 2 → 3 is the hard chain. 4 → 4.5 go together; 5 and Part 2 branch off 2–3; 6 wants 5. In Part 2: D before E; A before B is nice; F needs all of Phase 1; C floats free.</li>
-<li><b>Budget:</b> ~$150 books (all three) + possibly ~$49 one Coursera month + $50–150 GPU/API credits (incl. ~$10–30 Track E sim) + optional ~$100 nanochat + optional ~$100–300 SO-101 arm. Everything else free.</li>
+<li><b>Dependencies:</b> 0 → 1 → 2 → 3 is the hard chain (Week 10 needs Week 9's GPT-2). 4 → 4.5 go together; 5 and Part 2 branch off 2–3; 6 wants 5 <i>and</i> Week 10's KV cache. In Part 2: D before E; A before B is nice; F needs all of Phase 1; G wants Phase 3; C floats free. <b>The real branch point is the end of Phase 3</b> — from there every track is profitably open, so if one is calling louder than the next phase, take it.</li>
+<li><b>Budget:</b> ~$150 books (all three) + possibly ~$49 one Coursera month + $60–180 GPU/API credits (incl. ~$10–30 Track E sim, ~$5–20 Week 15 GRPO) + optional ~$100 nanochat + optional ~$100–300 SO-101 arm. Everything else free.</li>
 <li><b>Use AI to learn AI.</b> Ask Claude to quiz you, re-explain stuck concepts, or review your micrograd. Just write the code yourself first.</li>
-<li><b>The Pre-Phase Audit Protocol.</b> Before starting any phase or track, ask Claude: <i>"Audit Phase N first."</i> The audit verifies every link, re-checks availability claims, researches what's genuinely new (filtered by the end-to-end-systems principle), proposes a diff, then updates the files + this page. Depth by volatility — <b style="color:var(--core)">stable</b> (skip / 5-min check): Phases 0–2, math, Track D foundations, Track F · <b style="color:var(--survey)">medium</b> (light audit): Phases 3 &amp; 5, deep RL · <b style="color:#f87171">fast-moving</b> (full audit): Phases 4, 4.5, 6 and Tracks A, B, C, E. Last full revision: Aug 2026 — content gets refreshed exactly when it becomes relevant to you.</li>
+<li><b>Retention — the month-9 problem.</b> This plan is ~a year long; without a review loop you won't remember Week 5 by Week 30, and the later phases quietly depend on the earlier ones. Two cheap habits (~8 hr total): keep a <code>NOTES.md</code> per phase (three bullets a week — what clicked, what didn't), and at every phase boundary spend one hour re-deriving something from <i>two</i> phases back from a blank file. If you can't, that's the review loop doing its job.</li>
+<li><b>The Pre-Phase Audit Protocol.</b> Before starting any phase or track, ask Claude: <i>"Audit Phase N first."</i> The audit verifies every link, re-checks availability claims, and — critically — asks whether the <i>practice</i> changed, not just whether the link resolves. The real decay mode is a resource that loads perfectly while teaching a superseded default (chunking-heavy RAG written for 8k context windows; PPO-shaped RLHF written before GRPO; dense-model assumptions written before MoE went mainstream). Of each CORE item ask: <i>is this still how it's done, or just still online?</i> Then research what's genuinely new (filtered by the end-to-end-systems principle), propose a diff, update the files + this page. Depth by volatility — <b style="color:var(--core)">stable</b> (skip / 5-min check): Phases 0–2, math, Track D foundations, Track F · <b style="color:var(--survey)">medium</b> (light audit): Phase 3 Weeks 9–13, Phase 5, deep RL · <b style="color:#f87171">fast-moving</b> (full audit): Phase 3 Weeks 10 + 14–15, Phases 4, 4.5, 6 and Tracks A, B, C, E, G. Last full revision: Aug 2026 (structural review) — content gets refreshed exactly when it becomes relevant to you.</li>
 </ol>
 
 <!-- ===================== RESOURCES ===================== -->
@@ -589,7 +636,7 @@ footer button:hover{color:#f87171;border-color:#f87171}
 <div id="resources"></div>
 
 <footer>
-  <span>FULL-STACK AI ROADMAP · REV 3 · AUG 2026 · SOURCE: ROADMAP.md + RESOURCES.md</span>
+  <span>FULL-STACK AI ROADMAP · REV 4 · AUG 2026 · SOURCE: ROADMAP.md + RESOURCES.md</span>
   <button id="resetbtn" title="Clears all checkbox progress in this browser">RESET PROGRESS</button>
 </footer>
 
@@ -643,23 +690,40 @@ const R=[
 ["Stanford CS336: LM from Scratch","Liang et al. · full course","https://cs336.stanford.edu/spring2025"],
 ["Stanford CS224N","Manning et al. · full course","https://web.stanford.edu/class/cs224n/"],
 ["Sampling explained (temp, top-p/k)","MachineLearningPlus · blog ~1 hr","https://machinelearningplus.com/gen-ai/llm-temperature-top-p-top-k-explained/"]]],
-["6 · Data: The Underrated Layer",null,[
+["6 · Modern LLM Architecture & Scaling Laws","The GPT-2 → 2026 delta. Skip this and Phase 6's inference economics won't land.",[
+["★ The Big LLM Architecture Comparison","Raschka · 2–3 hr · RoPE/RMSNorm/SwiGLU/GQA/MLA/MoE","https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison"],
+["Mixture of Experts Explained","Hugging Face · ~1 hr","https://huggingface.co/blog/moe"],
+["A Visual Guide to Mixture of Experts","Grootendorst · ~1 hr","https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts"],
+["RoFormer (the RoPE paper)","Su et al. · reference","https://arxiv.org/abs/2104.09864"],
+["GQA: Grouped-Query Attention","Ainslie et al. (Google) · reference","https://arxiv.org/abs/2305.13245"],
+["★ Scaling laws literature review","Epoch AI · 1–2 hr","https://epoch.ai/blog/scaling-laws-literature-review"],
+["Scaling Laws for Neural LMs (Kaplan 2020)","OpenAI · reference","https://arxiv.org/abs/2001.08361"],
+["Compute-Optimal LLMs (Chinchilla 2022)","Hoffmann et al. · reference","https://arxiv.org/abs/2203.15556"],
+["Go smol or go home","Harm de Vries · why inference cost sets the optimum","https://www.harmdevries.com/post/model-size-vs-compute-overhead/"],
+["The Transformer Taxonomy","kipply · compact index of variants","https://kipp.ly/transformer-taxonomy/"]]],
+["7 · Data: The Underrated Layer",null,[
 ["★ FineWeb: decanting the web","Hugging Face · report 2–3 hr","https://huggingface.co/spaces/HuggingFaceFW/blogpost-fineweb-v1"],
 ["HF LLM Course — data chapters","HF · ~4 hr","https://huggingface.co/learn/llm-course/en/chapter5/1"],
 ["Evaluation Guidebook — contamination","HF · ~1 hr","https://github.com/huggingface/evaluation-guidebook"]]],
-["7 · Fine-Tuning & Post-Training",null,[
+["8 · Fine-Tuning & Post-Training",null,[
 ["smol-course (6 units, ~20 hr, GPU rec.)","HF · SFT, eval, DPO, VLMs, RL, synth data","https://huggingface.co/learn/smol-course"],
 ["Fine-tuning Guide (LoRA/QLoRA)","Unsloth · docs + free Colabs","https://unsloth.ai/docs/get-started/fine-tuning-llms-guide"],
 ["★ RLHF Book","Nathan Lambert · free textbook 20–40 hr","https://rlhfbook.com/"],
 ["Understanding Reasoning LLMs","Raschka · article 1–2 hr","https://magazine.sebastianraschka.com/p/understanding-reasoning-llms"],
 ["DeepSeek-R1 paper (R1-Zero vs R1)","DeepSeek-AI · paper 2–3 hr","https://arxiv.org/pdf/2501.12948"]]],
-["8 · Evaluation & Interpretability",null,[
+["9 · Reasoning & RL with Verifiable Rewards","Churns faster than anything else here. Mechanics durable; tooling disposable.",[
+["★ RLHF Book ch.14 — Reasoning & RLVR","Nathan Lambert · 1–2 hr","https://rlhfbook.com/c/14-reasoning.html"],
+["Understanding Reasoning LLMs","Raschka · 1–2 hr","https://magazine.sebastianraschka.com/p/understanding-reasoning-llms"],
+["DeepSeek-R1 paper","DeepSeek-AI · R1-Zero = pure RL; R1 = cold-start + multi-stage","https://arxiv.org/pdf/2501.12948"],
+["★ Unsloth RL / GRPO guide + Colabs","Unsloth · the affordable hands-on path","https://docs.unsloth.ai/basics/reinforcement-learning-rl-guide"],
+["GRPO Trainer docs","HF TRL · implementation reference","https://huggingface.co/docs/trl/grpo_trainer"],
+["open-r1","Hugging Face · open R1 reproduction","https://github.com/huggingface/open-r1"],
+["verifiers","Will Brown · how RL environments are structured","https://github.com/willccbb/verifiers"],
+["Reasoning From Scratch","Raschka · book + repo (in progress)","https://github.com/rasbt/reasoning-from-scratch"]]],
+["10 · Evaluation","Interpretability moved to §24 (Track G), where it has room to be a curriculum rather than three bookmarks.",[
 ["LLM Evaluation Guidebook","HF (Fourrier) · 5–10 hr","https://github.com/huggingface/evaluation-guidebook"],
-["CS224N Benchmarking lecture","Yann Dubois · video 1.5 hr","https://www.youtube.com/watch?v=TO0CqzqiArM"],
-["Mapping the Mind of an LLM","Anthropic · ~45 min","https://www.anthropic.com/research/mapping-mind-language-model"],
-["Transformer Circuits","Anthropic · research site","https://transformer-circuits.pub/"],
-["ARENA Ch.1: Transformer Interp","McDougall/Nanda · 20–40 hr hands-on","https://learn.arena.education/chapter1_transformer_interp/"]]],
-["9 · AI Engineering",null,[
+["CS224N Benchmarking lecture","Yann Dubois · video 1.5 hr","https://www.youtube.com/watch?v=TO0CqzqiArM"]]],
+["11 · AI Engineering",null,[
 ["★ AI Engineering (book)","Chip Huyen · ~$45; free repo","https://github.com/chiphuyen/aie-book"],
 ["Chip Huyen's blog","free book-quality posts","https://huyenchip.com/blog/"],
 ["Year of Building with LLMs I–III","Yan, Husain et al. · 3–4 hr","https://www.oreilly.com/radar/what-we-learned-from-a-year-of-building-with-llms-part-i/"],
@@ -684,11 +748,16 @@ const R=[
 ["Full Stack LLM Bootcamp","The Full Stack · ~10 hr","https://fullstackdeeplearning.com/llm-bootcamp/"],
 ["Prompt caching docs (hits ~0.1×; writes cost more; output unaffected)","Anthropic · 1 hr","https://platform.claude.com/docs/en/build-with-claude/prompt-caching"],
 ["Designing ML Systems","Chip Huyen · ~$45; free summaries","https://github.com/chiphuyen/dmls-book"]]],
-["10 · Security & Safety",null,[
+["12 · Working with Coding Agents","Using AI to build software — distinct from building AI software, and the layer you spend the most hours in.",[
+["★ Claude Code Best Practices","Anthropic · engineering doctrine, not tool tips","https://www.anthropic.com/engineering/claude-code-best-practices"],
+["Using LLMs for code","Simon Willison · the honest practitioner account","https://simonwillison.net/2025/Mar/11/using-llms-for-code/"],
+["Writing Tools for Agents","Anthropic · tool design IS prompt design","https://www.anthropic.com/engineering/writing-tools-for-agents"],
+["Effective Context Engineering","Anthropic · re-read with a codebase in mind","https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"]]],
+["13 · Security & Safety",null,[
 ["★ OWASP Top 10 for LLM Apps","OWASP GenAI · 2–3 hr","https://genai.owasp.org/llm-top-10/"],
 ["Prompt injection series (lethal trifecta)","Simon Willison · 3–4 hr","https://simonwillison.net/series/prompt-injection/"],
 ["NIST AI RMF + GenAI Profile","NIST · skim ~1 hr","https://www.nist.gov/itl/ai-risk-management-framework"]]],
-["11 · GPUs & CUDA",null,[
+["14 · GPUs & CUDA",null,[
 ["★ Making Deep Learning Go Brrrr","Horace He · 1–2 hr","https://horace.io/brrr_intro.html"],
 ["How GPU Computing Works","Stephen Jones, NVIDIA · ~40 min","https://www.youtube.com/watch?v=3l10o0DYJXg"],
 ["How CUDA Programming Works","Stephen Jones, NVIDIA · ~40 min","https://www.youtube.com/watch?v=QQceTDjA4f4"],
@@ -698,14 +767,14 @@ const R=[
 ["★ GPU MODE lectures + Discord","Saroufim, Köpf + community","https://www.gpumode.com/lectures"],
 ["GPU MODE lecture notes","Christian Mills","https://christianjmills.com/series/notes/cuda-mode-notes.html"],
 ["GPU MODE resource-stream","community index","https://github.com/gpu-mode/resource-stream"]]],
-["12 · Kernels",null,[
+["15 · Kernels",null,[
 ["Official Triton tutorials","Triton · 6–10 hr","https://triton-lang.org/main/getting-started/tutorials/index.html"],
 ["Optimize a CUDA Matmul Kernel","Simon Boehm · 3–6 hr","https://siboehm.com/articles/22/CUDA-MMM"],
 ["Advanced Matmul on Modern GPUs","Aman Salykov · 3–5 hr","https://salykova.github.io/sgemm-gpu"],
 ["ELI5: FlashAttention","Aleksa Gordić · 1–1.5 hr","https://gordicaleksa.medium.com/eli5-flash-attention-5c44017022ad"],
 ["triton-resources (+ Puzzles)","rkinas · curated list","https://github.com/rkinas/triton-resources"],
 ["torch.compile tutorial","PyTorch · 1–2 hr","https://docs.pytorch.org/tutorials/intermediate/torch_compile_tutorial.html"]]],
-["13 · Distributed, Inference & Data Centers",null,[
+["16 · Distributed, Inference & Data Centers",null,[
 ["★ The Ultra-Scale Playbook","HF · 10–20 hr, survey first","https://huggingface.co/spaces/nanotron/ultrascale-playbook"],
 ["Train Really Large Models","Lilian Weng · ~1 hr","https://lilianweng.github.io/posts/2021-09-25-train-large/"],
 ["Distributed Training & Finetuning","Sumanth Hegde · 1–2 hr","https://sumanthrh.com/post/distributed-and-efficient-finetuning/"],
@@ -719,15 +788,22 @@ const R=[
 ["Guide to AI Datacenter Interconnects","Vikram Sekar · ~45 min","https://www.viksnewsletter.com/p/a-beginners-guide-to-ai-interconnects"],
 ["Datacenter Anatomy Pt 1: Electrical","SemiAnalysis · partial paywall","https://newsletter.semianalysis.com/p/datacenter-anatomy-part-1-electrical"],
 ["Datacenter Anatomy Pt 2: Cooling","SemiAnalysis · partial paywall","https://newsletter.semianalysis.com/p/datacenter-anatomy-part-2-cooling-systems"],
-["100,000 H100 Clusters","SemiAnalysis · partial paywall","https://newsletter.semianalysis.com/p/100000-h100-clusters-power-network"]]],
-["14 · Staying Current",null,[
+["100,000 H100 Clusters","SemiAnalysis · partial paywall","https://newsletter.semianalysis.com/p/100000-h100-clusters-power-network"],
+["★ ML Engineering (the large-run field manual)","Stas Bekman · throughput debugging, fault tolerance, instabilities","https://github.com/stas00/ml-engineering"],
+["★ The Smol Training Playbook","Hugging Face · honest end-to-end account, failures included","https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook"],
+["Training using float8 with FSDP2","PyTorch · why FP8 training is standard","https://pytorch.org/blog/training-using-float8-fsdp2/"],
+["NCCL","NVIDIA · all-reduce, all-gather, reduce-scatter","https://github.com/NVIDIA/nccl"],
+["SGLang","LMSYS · the second engine (RadixAttention)","https://docs.sglang.ai/"],
+["Mastering LLM Inference Optimization","NVIDIA · prefill vs decode","https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/"],
+["★ How To Scale Your Model (JAX/TPU book)","Google DeepMind · non-NVIDIA view; best free scaling arithmetic anywhere","https://jax-ml.github.io/scaling-book/"]]],
+["17 · Staying Current",null,[
 ["Latent Space","swyx & Alessio · weekly","https://www.latent.space/"],
 ["AI News daily digest","smol.ai · daily","https://news.smol.ai/"],
 ["Interconnects","Nathan Lambert · 1–3×/wk","https://www.interconnects.ai/"],
 ["Ahead of AI","Raschka · ~monthly","https://magazine.sebastianraschka.com/"],
 ["Simon Willison's blog","daily","https://simonwillison.net/"],
 ["Eugene Yan's writing","occasional","https://eugeneyan.com/writing/"]]],
-["15 · Track A — Vision & VLMs",null,[
+["18 · Track A — Vision & VLMs",null,[
 ["CS231n","Stanford · full course, selective","https://cs231n.stanford.edu/"],
 ["CS231n Spring 2025 lectures","Stanford · videos","https://www.youtube.com/playlist?list=PLoROMvodv4rOmsNzYBMe0gJY2XS8AQg16"],
 ["★ Community Computer Vision Course","HF · 25–40 hr; Unit 4 = best free VLM unit","https://huggingface.co/learn/computer-vision-course/en/unit0/welcome/welcome"],
@@ -737,7 +813,7 @@ const R=[
 ["Understanding Multimodal LLMs","Raschka · ~1 hr","https://magazine.sebastianraschka.com/p/understanding-multimodal-llms"],
 ["Guide to YOLO Models","Roboflow · ~45 min","https://blog.roboflow.com/guide-to-yolo-models/"],
 ["What is SAM 2?","Roboflow · ~45 min","https://blog.roboflow.com/what-is-segment-anything-2/"]]],
-["16 · Track B — Diffusion",null,[
+["19 · Track B — Diffusion",null,[
 ["The Illustrated Stable Diffusion","Jay Alammar · ~45 min","https://jalammar.github.io/illustrated-stable-diffusion/"],
 ["What are Diffusion Models?","Lilian Weng · math-heavy, 2–3 hr","https://lilianweng.github.io/posts/2021-07-11-diffusion-models/"],
 ["The Annotated Diffusion Model","Rogge & Rasul (HF) · ~2 hr","https://huggingface.co/blog/annotated-diffusion"],
@@ -746,12 +822,12 @@ const R=[
 ["Diffusion Models for Video","Lilian Weng · 1–1.5 hr","https://lilianweng.github.io/posts/2024-04-12-diffusion-video/"],
 ["Sora: world simulators","OpenAI · ~30 min","https://openai.com/index/video-generation-models-as-world-simulators/"],
 ["fast.ai Part 2 → Stable Diffusion","Jeremy Howard · 30+ hr mastery","https://course.fast.ai/Lessons/part2.html"]]],
-["17 · Track C — Speech & Audio",null,[
+["20 · Track C — Speech & Audio",null,[
 ["★ HF Audio Course","HF · 8 units, 15–20 hr","https://huggingface.co/learn/audio-course/chapter0/introduction"],
 ["Introducing Whisper","OpenAI · ~30 min","https://openai.com/index/whisper/"],
 ["LLM-based Audio Models","Yatharth S. (HF) · ~45 min","https://huggingface.co/blog/YatharthS/llm-tts-models"],
 ["Multimodality and LMMs","Chip Huyen · ~1.5 hr","https://huyenchip.com/2023/10/10/multimodal.html"]]],
-["18 · Track D — Reinforcement Learning",null,[
+["21 · Track D — Reinforcement Learning",null,[
 ["RL: An Introduction (2nd ed.)","Sutton & Barto · free PDF","http://incompleteideas.net/book/the-book-2nd.html"],
 ["★ David Silver's RL course","DeepMind/UCL · 10 lectures ~15 hr","https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ"],
 ["Spinning Up in Deep RL","OpenAI · 2–4 wks","https://spinningup.openai.com/en/latest/"],
@@ -761,7 +837,7 @@ const R=[
 ["CleanRL","Costa Huang et al. · single-file impls","https://docs.cleanrl.dev/"],
 ["Gymnasium","Farama Foundation","https://gymnasium.farama.org/"],
 ["CS285: Deep RL","Levine (Berkeley) · 60+ hr","https://rail.eecs.berkeley.edu/deeprlcourse/"]]],
-["19 · Track E — Robotics & Embodied AI","HF Robotics Course: only intro + classical units released as of Aug 2026 — recheck quarterly.",[
+["22 · Track E — Robotics & Embodied AI","HF Robotics Course: only intro + classical units released as of Aug 2026 — recheck quarterly.",[
 ["HF Robotics Course (partial)","HF · released units ~8–10 hr","https://huggingface.co/learn/robotics-course"],
 ["★ LeRobot library + docs","HF · the executable hands-on path today","https://huggingface.co/docs/lerobot"],
 ["SO-101 robot arm","Robot Studio/HF · ~$100–300","https://huggingface.co/docs/lerobot/so101"],
@@ -774,15 +850,23 @@ const R=[
 ["Robotic Manipulation","Tedrake (MIT) · free book + lectures","https://manipulation.csail.mit.edu/"],
 ["Learning and Control","Sergey Levine · Substack","https://sergeylevine.substack.com/"],
 ["Physical Intelligence blog","π-series announcements","https://www.physicalintelligence.company/blog"]]],
-["20 · Track F — Causal Inference",null,[
+["23 · Track F — Causal Inference",null,[
 ["The Book of Why","Pearl & Mackenzie · ~$15, ~15 hr","https://www.amazon.com/Book-Why-Science-Cause-Effect/dp/046509760X"],
 ["★ Causal Inference for the Brave and True","Facure · free Python book 30–50 hr","https://matheusfacure.github.io/python-causality-handbook/"],
 ["Causal Inference: The Mixtape","Cunningham · free, econometrics","https://mixtape.scunning.com/"],
 ["Trustworthy Online Controlled Experiments","Kohavi et al. · ~$35, ch.1 free","https://experimentguide.com/"],
 ["DoWhy + EconML","Microsoft/PyWhy · 5–10 hr","https://www.pywhy.org/dowhy/"]]],
-["21 · Phase 4.5 — Production AI Systems","Mostly regrouped from §9 — the phase applies material you've met. This section churns fastest; swap tools, keep concepts.",[
+["24 · Track G — Alignment & Interpretability",null,[
+["★ AI Safety Fundamentals — Alignment","BlueDot Impact · free, ~4–5 wks","https://aisafetyfundamentals.com/alignment/"],
+["Mapping the Mind of an LLM","Anthropic · ~45 min","https://www.anthropic.com/research/mapping-mind-language-model"],
+["Getting Started in Mech Interp","Neel Nanda · the honest on-ramp","https://www.neelnanda.io/mechanistic-interpretability/getting-started"],
+["★ ARENA Ch.1: Transformer Interpretability","McDougall/Nanda · 20–40 hr hands-on","https://learn.arena.education/chapter1_transformer_interp/"],
+["Transformer Circuits","Anthropic · primary sources","https://transformer-circuits.pub/"],
+["Introspection in LLMs","Anthropic · where the frontier is","https://www.anthropic.com/research/introspection"],
+["Alignment Forum","Community · read critically","https://www.alignmentforum.org/"]]],
+["25 · Phase 4.5 — Production AI Systems","Mostly regrouped from §11 — the phase applies material you've met. This section churns fastest; swap tools, keep concepts.",[
 ["★ AI Engineering — serving/ops chapters","Chip Huyen · re-read as operator","https://github.com/chiphuyen/aie-book"],
-["Prompt caching docs","Anthropic · see §9 pricing note","https://platform.claude.com/docs/en/build-with-claude/prompt-caching"],
+["Prompt caching docs","Anthropic · see §11 pricing note","https://platform.claude.com/docs/en/build-with-claude/prompt-caching"],
 ["LLM Evals FAQ — CI integration answers","Husain & Shankar","https://hamel.dev/blog/posts/evals-faq/"],
 ["LangSmith eval & monitoring concepts","LangChain · vocabulary transfers","https://docs.langchain.com/langsmith/evaluation-concepts"],
 ["OpenTelemetry","CNCF · durable observability vocabulary","https://opentelemetry.io/docs/"],
@@ -796,13 +880,25 @@ rows.map(([n,m,u])=>`<a class="rcard" href="${u}" target="_blank" rel="noopener"
 }</div></div>`).join('');
 
 /* ---------- checkboxes + persistence ---------- */
-const KEY='fsai-roadmap-v1';
+const KEY='fsai-roadmap-v2';
 let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 const save=()=>localStorage.setItem(KEY,JSON.stringify(state));
+/* Stable, content-derived task ids. The previous scheme keyed on position
+   (ph.id+':'+index), so inserting one task silently reassigned every later
+   checkbox in that phase. Hashing the text means ids survive insertion,
+   reordering and renumbering; only editing a task's own text resets it. */
+const hash=t=>{let h=5381;t=t.replace(/\s+/g,' ').trim();
+  for(let i=0;i<t.length;i++)h=((h<<5)+h+t.charCodeAt(i))>>>0;return h.toString(36)};
+/* one-time best-effort migration from v1, only for phases whose task order
+   did not change in the Aug-2026 structural revision */
+const MIGRATE_OK=['p0','p1','p2','p5','p7','ta','tb','tc','td','te','tf'];
+let old=null;
+if(!localStorage.getItem(KEY)){try{old=JSON.parse(localStorage.getItem('fsai-roadmap-v1')||'null')}catch(e){}}
 const tasks=[];
 document.querySelectorAll('details.phase').forEach(ph=>{
   ph.querySelectorAll('li.task').forEach((li,i)=>{
-    const id=ph.id+':'+i;
+    const id=ph.id+':'+hash(li.textContent||'');
+    if(old&&MIGRATE_OK.indexOf(ph.id)>=0&&old[ph.id+':'+i])state[id]=true;
     const box=document.createElement('span');box.className='box';box.setAttribute('role','checkbox');box.tabIndex=0;
     box.innerHTML='<svg viewBox="0 0 16 16"><polyline points="3,8.5 6.5,12 13,4"/></svg>';
     li.prepend(box);
@@ -814,10 +910,11 @@ document.querySelectorAll('details.phase').forEach(ph=>{
     tasks.push({id,ph:ph.id});
   });
 });
+if(old)save();
 
 /* ---------- side nav ---------- */
 const NAV=[['PART 1 · CORE',[['p0','Phase 0 · Grand Tour'],['p1','Phase 1 · Foundations'],['p2','Phase 2 · DL From Scratch'],['p3','Phase 3 · Real LLMs'],['p4','Phase 4 · AI Engineering'],['p45','Phase 4.5 · Production'],['p5','Phase 5 · GPUs & Kernels'],['p6','Phase 6 · Scale'],['p7','Phase 7 · Staying Current']]],
-['PART 2 · BREADTH',[['ta','A · Vision & VLMs'],['tb','B · Diffusion'],['tc','C · Speech & Audio'],['td','D · Reinforcement Learning'],['te','E · Robotics'],['tf','F · Causal Inference']]],
+['PART 2 · BREADTH',[['ta','A · Vision & VLMs'],['tb','B · Diffusion'],['tc','C · Speech & Audio'],['td','D · Reinforcement Learning'],['te','E · Robotics'],['tf','F · Causal Inference'],['tg','G · Alignment & Interp']]],
 ['MORE',[['further','Further Specializations'],['howto','How to Use'],['library','Resource Library']]]];
 const nav=document.getElementById('sidenav');
 nav.innerHTML=NAV.map(([g,items])=>`<div class="grp">${g}</div>`+items.map(([id,label])=>
