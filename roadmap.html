@@ -385,7 +385,7 @@ footer button:hover{color:#f87171;border-color:#f87171}
 <li class="task"><span class="body"><span class="d">D1–2</span>Raschka — <a href="https://magazine.sebastianraschka.com/p/understanding-reasoning-llms" target="_blank">Understanding Reasoning LLMs</a> + skim the <a href="https://arxiv.org/pdf/2501.12948" target="_blank">DeepSeek-R1 paper</a> <span class="tag s">SURVEY</span> (precision: <b>R1-Zero</b> = reasoning from pure RL with verifiable rewards; production <b>R1</b> used cold-start data + multi-stage training), then <a href="https://rlhfbook.com/c/14-reasoning.html" target="_blank">RLHF Book ch. 14 — Reasoning &amp; RLVR</a> for the mechanics <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">DAY 3</span><b>GRPO</b> — how it differs from PPO (no learned value model; advantage estimated from a group of sampled completions) and why that made RL post-training cheap enough to spread. <a href="https://huggingface.co/docs/trl/grpo_trainer" target="_blank">TRL's GRPO Trainer docs</a> are the concrete reference <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D4–5</span><b>Hands-on</b> — run a small GRPO job on a <i>verifiable</i> task (math with a checkable answer, or code with a passing test) via <a href="https://docs.unsloth.ai/basics/reinforcement-learning-rl-guide" target="_blank">Unsloth's RL guide</a> free Colab (~$5–20). The point is not a good model; it's watching a reward curve respond to a reward function you wrote <span class="tag c">CORE</span></span></li>
-<li class="task"><span class="body"><span class="d">DAY 6</span><b>Environments &amp; reward hacking</b> — skim <a href="https://github.com/huggingface/open-r1" target="_blank">open-r1</a> and <a href="https://github.com/willccbb/verifiers" target="_blank">verifiers</a> for how RL environments are structured, then think adversarially: for the reward you wrote on Day 4, what is the laziest policy that scores well without solving the task? Write it down. Reward hacking is the field's central practical problem and you should meet it with your hands on a real reward <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 6</span><b>Environments &amp; reward hacking</b> — skim <a href="https://github.com/huggingface/open-r1" target="_blank">open-r1</a> and <a href="https://github.com/willccbb/verifiers" target="_blank">verifiers</a> for how RL environments are structured, then think adversarially: for the reward you wrote on Day 4, what is the laziest policy that scores well without solving the task? Write it down. Reward hacking is the field's central practical problem and you should meet it with your hands on a real reward. The <a href="https://rlvrbook.com/chapters/07-reward-hacking-and-verifier-robustness.html" target="_blank">RLVR Book's reward-hacking chapter</a> is the most direct treatment — see the caveat on it in the library <span class="tag c">CORE</span></span></li>
 </ul></div>
 <div class="wk"><ul class="tasks">
 <li class="task"><span class="body"><b>Current as you read it</b> — Raschka's <a href="https://magazine.sebastianraschka.com/p/categories-of-inference-time-scaling" target="_blank">Categories of Inference-Time Scaling</a> and <a href="https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms" target="_blank">Controlling Reasoning Effort in LLMs</a> cover how reasoning became controllable (low/medium/high effort modes) — the part that reached products fastest. Lambert's <a href="https://www.interconnects.ai/p/frontier-post-training-recipe-review" target="_blank">frontier post-training recipe review</a> is the best look at what labs actually run <span class="tag s">SURVEY</span></span></li></ul></div>
@@ -500,7 +500,7 @@ footer button:hover{color:#f87171;border-color:#f87171}
 <div class="wk"><h4><span class="stepn">2</span> Distributed training II: what actually happens</h4><p class="goal">Why this step exists: Step 1 teaches the parallelism strategies. It does not teach you that large runs fail constantly, that a node dies mid-epoch, that your throughput is 40% of theoretical and you have to find out why. That gap is the difference between reading about training and training.</p><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–3</span>Stas Bekman — <a href="https://github.com/stas00/ml-engineering" target="_blank">ML Engineering</a>, selectively: performance/throughput debugging, fault tolerance, training instabilities. The field manual — written from real large-run scar tissue, not theory <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><span class="d">D4–5</span>HF — <a href="https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook" target="_blank">The Smol Training Playbook</a>: one team's honest end-to-end account of training a real model, <i>including the ablations that failed</i>. Read it right after the theory, while you still believe training is tidy <span class="tag c">CORE</span></span></li>
-<li class="task"><span class="body"><span class="d">DAY 6</span>Low precision + collectives — why <a href="https://pytorch.org/blog/training-using-float8-fsdp2/" target="_blank">FP8 training</a> is standard and what it costs in stability, plus the collectives everything is built from: all-reduce, all-gather, reduce-scatter (<a href="https://github.com/NVIDIA/nccl" target="_blank">NCCL</a>). Name the collectives and "the interconnect is the bottleneck" in Step 5 becomes a concrete claim instead of a slogan <span class="tag s">SURVEY</span></span></li>
+<li class="task"><span class="body"><span class="d">DAY 6</span>Low precision + collectives — why <a href="https://pytorch.org/blog/training-using-float8-fsdp2/" target="_blank">FP8 training</a> (then <a href="https://developer.nvidia.com/blog/how-to-optimize-transformer-based-models-for-low-precision-training/" target="_blank">NVIDIA on the practical failure modes</a>) is standard and what it costs in stability, plus the collectives everything is built from: all-reduce, all-gather, reduce-scatter (<a href="https://github.com/NVIDIA/nccl" target="_blank">NCCL</a>). Name the collectives and "the interconnect is the bottleneck" in Step 5 becomes a concrete claim instead of a slogan <span class="tag s">SURVEY</span></span></li>
 </ul></div>
 <div class="wk"><h4><span class="stepn">3</span> Inference: the economics of serving</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">D1–2</span>kipply — <a href="https://kipp.ly/transformer-inference-arithmetic/" target="_blank">Transformer Inference Arithmetic</a> (predict latency + cost from first principles) <span class="tag c">CORE</span></span></li>
@@ -654,7 +654,7 @@ footer button:hover{color:#f87171;border-color:#f87171}
 <div class="wk"><h4><span class="stepn">G2</span> Looking inside</h4><ul class="tasks">
 <li class="task"><span class="body">Anthropic — <a href="https://www.anthropic.com/research/mapping-mind-language-model" target="_blank">Mapping the Mind of a Large Language Model</a> (features, superposition, dictionary learning) <span class="tag c">CORE</span></span></li>
 <li class="task"><span class="body"><a href="https://transformer-circuits.pub/" target="_blank">transformer-circuits.pub</a> for the primary sources <span class="tag s">SURVEY</span></span></li>
-<li class="task"><span class="body">Neel Nanda — <a href="https://www.neelnanda.io/mechanistic-interpretability/getting-started" target="_blank">Getting Started in Mech Interp</a> — the concrete on-ramp, and an honest account of what the field can and can't currently do <span class="tag c">CORE</span></span></li>
+<li class="task"><span class="body">Neel Nanda — <a href="https://www.neelnanda.io/mechanistic-interpretability/getting-started" target="_blank">Getting Started in Mech Interp</a> — the concrete on-ramp, and an honest account of what the field can and can't currently do. Keep <a href="https://learnmechinterp.com/" target="_blank">Learn Mechanistic Interpretability</a> open beside ARENA as the topic-by-topic reference <span class="tag c">CORE</span></span></li>
 </ul></div>
 <div class="wk"><h4><span class="stepn">G3–4</span> Hands-on</h4><ul class="tasks">
 <li class="task"><span class="body"><a href="https://learn.arena.education/chapter1_transformer_interp/" target="_blank">ARENA Ch. 1: Transformer Interpretability</a> — the real curriculum, and the reason Phase 2 was non-negotiable: you'll be indexing into activations of a transformer you already understand. Induction heads + activation patching at minimum <span class="tag c">CORE</span></span></li>
@@ -762,7 +762,13 @@ const R=[
 ["Stanford CS224N","Manning et al. · full course","https://web.stanford.edu/class/cs224n/"],
 ["Sampling explained (temp, top-p/k)","MachineLearningPlus · blog ~1 hr","https://machinelearningplus.com/gen-ai/llm-temperature-top-p-top-k-explained/"]]],
 ["6 · Modern LLM Architecture & Scaling Laws","The GPT-2 → 2026 delta. Skip this and Phase 6's inference economics won't land.",[
-["★ The Big LLM Architecture Comparison","Raschka · 2–3 hr · RoPE/RMSNorm/SwiGLU/GQA/MLA/MoE","https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison"],
+["The Big LLM Architecture Comparison","Raschka · the baseline GPT-2→modern delta","https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison"],
+["★ A Visual Guide to Attention Variants","Raschka · MHA → GQA → MLA, sparse, hybrid","https://magazine.sebastianraschka.com/p/visual-attention-variants"],
+["Recent Developments in LLM Architectures","Raschka · KV sharing, mHC, compressed attention","https://magazine.sebastianraschka.com/p/recent-developments-in-llm-architectures"],
+["★ My Workflow for Understanding LLM Architectures","Raschka · read the NEXT release yourself","https://magazine.sebastianraschka.com/p/workflow-for-understanding-llms"],
+["LLM Architecture Gallery","Raschka · living reference","https://sebastianraschka.com/llm-architecture-gallery/"],
+["A Dream of Spring for Open-Weight LLMs","Raschka · 10 architectures, early 2026","https://magazine.sebastianraschka.com/p/a-dream-of-spring-for-open-weight"],
+["From DeepSeek V3 to V3.2","Raschka · sparse attention + RL updates","https://magazine.sebastianraschka.com/p/technical-deepseek"],
 ["Mixture of Experts Explained","Hugging Face · ~1 hr","https://huggingface.co/blog/moe"],
 ["A Visual Guide to Mixture of Experts","Grootendorst · ~1 hr","https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts"],
 ["RoFormer (the RoPE paper)","Su et al. · reference","https://arxiv.org/abs/2104.09864"],
@@ -780,7 +786,7 @@ const R=[
 ["smol-course (6 units, ~20 hr, GPU rec.)","HF · SFT, eval, DPO, VLMs, RL, synth data","https://huggingface.co/learn/smol-course"],
 ["Fine-tuning Guide (LoRA/QLoRA)","Unsloth · docs + free Colabs","https://unsloth.ai/docs/get-started/fine-tuning-llms-guide"],
 ["★ RLHF Book","Nathan Lambert · free textbook 20–40 hr","https://rlhfbook.com/"]]],
-["9 · Reasoning & RL with Verifiable Rewards","Churns faster than anything else here. Mechanics durable; tooling disposable.",[
+["9 · Reasoning & RL with Verifiable Rewards","Churns faster than anything else here — mechanics durable, tooling disposable. The RLVR Book is a v0 single-author work: a good current map, not a settled reference. Cross-check load-bearing claims.",[
 ["★ RLHF Book ch.14 — Reasoning & RLVR","Nathan Lambert · 1–2 hr","https://rlhfbook.com/c/14-reasoning.html"],
 ["Understanding Reasoning LLMs","Raschka · 1–2 hr","https://magazine.sebastianraschka.com/p/understanding-reasoning-llms"],
 ["DeepSeek-R1 paper","DeepSeek-AI · R1-Zero = pure RL; R1 = cold-start + multi-stage","https://arxiv.org/pdf/2501.12948"],
@@ -788,7 +794,12 @@ const R=[
 ["GRPO Trainer docs","HF TRL · implementation reference","https://huggingface.co/docs/trl/grpo_trainer"],
 ["open-r1","Hugging Face · open R1 reproduction","https://github.com/huggingface/open-r1"],
 ["verifiers","Will Brown · how RL environments are structured","https://github.com/willccbb/verifiers"],
-["Reasoning From Scratch","Raschka · book + repo (in progress)","https://github.com/rasbt/reasoning-from-scratch"]]],
+["Reasoning From Scratch","Raschka · book + repo (in progress)","https://github.com/rasbt/reasoning-from-scratch"],
+["Categories of Inference-Time Scaling","Raschka · ~1.5 hr","https://magazine.sebastianraschka.com/p/categories-of-inference-time-scaling"],
+["Controlling Reasoning Effort in LLMs","Raschka · how effort modes are trained","https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms"],
+["Frontier post-training recipe review","Lambert & Timbers · what labs actually run","https://www.interconnects.ai/p/frontier-post-training-recipe-review"],
+["The RLVR Book (see caveat above)","Kyars · v0 2026 · deepest free verifier-design treatment","https://rlvrbook.com/"],
+["Build a Reasoning Model (From Scratch)","Raschka · Manning livebook, ch.6 = RL","https://livebook.manning.com/book/build-a-reasoning-model-from-scratch/chapter-6"]]],
 ["10 · Evaluation","Interpretability moved to §24 (Track G), where it has room to be a curriculum rather than three bookmarks.",[
 ["LLM Evaluation Guidebook","HF (Fourrier) · 5–10 hr","https://github.com/huggingface/evaluation-guidebook"],
 ["CS224N Benchmarking lecture","Yann Dubois · video 1.5 hr","https://www.youtube.com/watch?v=TO0CqzqiArM"]]],
@@ -821,7 +832,9 @@ const R=[
 ["★ Claude Code Best Practices","Anthropic · engineering doctrine, not tool tips","https://www.anthropic.com/engineering/claude-code-best-practices"],
 ["Using LLMs for code","Simon Willison · the honest practitioner account","https://simonwillison.net/2025/Mar/11/using-llms-for-code/"],
 ["Writing Tools for Agents","Anthropic · tool design IS prompt design","https://www.anthropic.com/engineering/writing-tools-for-agents"],
-["Effective Context Engineering","Anthropic · re-read with a codebase in mind","https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"]]],
+["Effective Context Engineering","Anthropic · re-read with a codebase in mind","https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"],
+["★ Components of a Coding Agent","Raschka · harness anatomy: tools, memory, repo context","https://magazine.sebastianraschka.com/p/components-of-a-coding-agent"],
+["Using Local Coding Agents","Raschka · open-weight models in local harnesses","https://magazine.sebastianraschka.com/p/using-local-coding-agents"]]],
 ["13 · Security & Safety for AI Apps",null,[
 ["★ OWASP Top 10 for LLM Apps","OWASP GenAI · 2–3 hr","https://genai.owasp.org/llm-top-10/"],
 ["Prompt injection series (lethal trifecta)","Simon Willison · 3–4 hr","https://simonwillison.net/series/prompt-injection/"],
@@ -862,6 +875,7 @@ const R=[
 ["★ The Smol Training Playbook","Hugging Face · honest end-to-end account, failures included","https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook"],
 ["Training using float8 with FSDP2","PyTorch · why FP8 training is standard","https://pytorch.org/blog/training-using-float8-fsdp2/"],
 ["NCCL","NVIDIA · all-reduce, all-gather, reduce-scatter","https://github.com/NVIDIA/nccl"],
+["Low-Precision Training: practical failure modes","NVIDIA · ~1.5 hr","https://developer.nvidia.com/blog/how-to-optimize-transformer-based-models-for-low-precision-training/"],
 ["SGLang","LMSYS · the second engine (RadixAttention)","https://docs.sglang.ai/"],
 ["Mastering LLM Inference Optimization","NVIDIA · prefill vs decode","https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/"],
 ["★ How To Scale Your Model (JAX/TPU book)","Google DeepMind · non-NVIDIA view; best free scaling arithmetic anywhere","https://jax-ml.github.io/scaling-book/"]]],
@@ -935,6 +949,7 @@ const R=[
 ["★ ARENA Ch.1: Transformer Interpretability","McDougall/Nanda · 20–40 hr hands-on","https://learn.arena.education/chapter1_transformer_interp/"],
 ["Transformer Circuits","Anthropic · primary sources","https://transformer-circuits.pub/"],
 ["Introspection in LLMs","Anthropic · where the frontier is","https://www.anthropic.com/research/introspection"],
+["Learn Mechanistic Interpretability","topic-by-topic: QK/OV, superposition, logit lens","https://learnmechinterp.com/"],
 ["Alignment Forum","Community · read critically","https://www.alignmentforum.org/"]]],
 ["25 · Phase 4.5 — Production AI Systems","Mostly regrouped from §11 — the phase applies material you've met. This section churns fastest; swap tools, keep concepts.",[
 ["★ AI Engineering — serving/ops chapters","Chip Huyen · re-read as operator","https://github.com/chiphuyen/aie-book"],

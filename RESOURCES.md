@@ -129,6 +129,10 @@ Companion to [ROADMAP.md](ROADMAP.md). Cross-references use **Phase · Step** �
 | Categories of Inference-Time Scaling | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/categories-of-inference-time-scaling |
 | Controlling Reasoning Effort in LLMs (how low/medium/high effort modes are trained) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms |
 | Frontier post-training recipe review (what labs actually run) | Nathan Lambert & Finbarr Timbers | Interview, ~1 hr | https://www.interconnects.ai/p/frontier-post-training-recipe-review |
+| The RLVR Book — esp. ch. 7, reward hacking & verifier robustness | Kian Kyars | Free online book + PDF | https://rlvrbook.com/ |
+| Build a Reasoning Model (From Scratch) — ch. 6, training with RL | Sebastian Raschka | Book (Manning livebook) | https://livebook.manning.com/book/build-a-reasoning-model-from-scratch/chapter-6 |
+
+> **On the RLVR Book:** a v0 released April 2026, single-author, openly modelled on Lambert's RLHF book and honest about its LLM-assisted production. It goes deeper on verifier design and reward hacking than anything else free, and it exists precisely because RLHF-book RLVR content dates fast. Treat it as a well-organised current map rather than a settled reference — cross-check load-bearing claims against §9's primary sources.
 
 *This section will churn faster than any other in this file. Treat the mechanics (GRPO, verifiable rewards, reward hacking) as durable and the specific tooling as disposable.*
 
@@ -237,6 +241,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Cross-references use **Phase · Step** �
 | **The Smol Training Playbook** ⭐ (one team's honest end-to-end account — including the ablations that failed) | Hugging Face | Interactive book, 5–10 hr | https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook |
 | Training using float8 with FSDP2 (why FP8 training is standard and what it costs in stability) | PyTorch | Blog, ~45 min | https://pytorch.org/blog/training-using-float8-fsdp2/ |
 | NCCL (the collectives everything above is built from: all-reduce, all-gather, reduce-scatter) | NVIDIA | Library + docs, reference | https://github.com/NVIDIA/nccl |
+| How to Optimize Transformer-Based Models for Low-Precision Training (the practical FP8/FP4 failure modes) | NVIDIA | Article, ~1.5 hr | https://developer.nvidia.com/blog/how-to-optimize-transformer-based-models-for-low-precision-training/ |
 | SGLang (the second serving engine — RadixAttention / prefix-cache reuse) | LMSYS / SGLang team | Docs, 2–3 hr | https://docs.sglang.ai/ |
 | Mastering LLM Techniques: Inference Optimization (prefill vs decode, in NVIDIA's words) | NVIDIA | Article, 1–2 hr | https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/ |
 | **How To Scale Your Model** ⭐ (the JAX/TPU book — the non-NVIDIA view, and the best free treatment of scaling arithmetic anywhere) | Austin et al. (Google DeepMind) | Interactive book, 10–15 hr | https://jax-ml.github.io/scaling-book/ |
@@ -345,6 +350,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Cross-references use **Phase · Step** �
 | **ARENA Ch. 1: Transformer Interpretability** ⭐ (the actual hands-on curriculum) | McDougall / Nanda | Hands-on, 20–40 hr | https://learn.arena.education/chapter1_transformer_interp/ |
 | Transformer Circuits (primary sources) | Anthropic | Research site | https://transformer-circuits.pub/ |
 | Introspection in LLMs (where the frontier is) | Anthropic | Research post, ~45 min | https://www.anthropic.com/research/introspection |
+| Learn Mechanistic Interpretability (topic-by-topic reference: QK/OV circuits, superposition, logit lens) | learnmechinterp.com | Reference site | https://learnmechinterp.com/ |
 | Alignment Forum (the field's working discourse — read critically) | Community | Site | https://www.alignmentforum.org/ |
 
 ### 25. Phase 4.5 — Production AI Systems

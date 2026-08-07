@@ -16,7 +16,7 @@ Phase 4 doesn't need Phase 3, and Phase 5 doesn't need Phase 4. Take the descent
 | File | What it is |
 |---|---|
 | **[ROADMAP.md](ROADMAP.md)** | The plan. A **spine** (Phases 0→3, in order), then **two independent descents** — ↑ products (Phase 4 → 4.5) and ↓ metal (Phase 5 → 6) — then **7 breadth tracks**. Numbered steps, not weeks: it's a map, not a calendar. Core/Survey/Reference tags and a milestone project per phase. |
-| **[RESOURCES.md](RESOURCES.md)** | The library: ~212 curated, link-verified resources across 25 sections. |
+| **[RESOURCES.md](RESOURCES.md)** | The library: ~211 curated, link-verified resources across 25 sections. |
 | **[roadmap.html](roadmap.html)** | Interactive tracker: open locally in any browser — checkable tasks with progress saved in localStorage, every resource one click away. |
 
 ## How this was built
