@@ -1,6 +1,6 @@
 # The Full-Stack AI Resource Library
 
-Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless marked otherwise.** ⭐ = if you only do one thing in that section, do this one.
+Companion to [ROADMAP.md](ROADMAP.md). Cross-references use **Phase · Step** — there are no global week numbers. Links verified August 2026. **Free unless marked otherwise.** ⭐ = if you only do one thing in that section, do this one.
 
 ---
 
@@ -36,6 +36,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Neural Networks series (incl. GPT/attention chapters) | 3Blue1Brown | Videos, ~4 hr | https://www.3blue1brown.com/topics/neural-networks |
 | **Neural Networks: Zero to Hero** ⭐ | Andrej Karpathy | Code-along videos, 30–50 hr | https://karpathy.ai/zero-to-hero.html |
 | micrograd (build backprop from scratch) | Karpathy | Repo + video | https://github.com/karpathy/micrograd |
+| makemore (bigrams → MLP → WaveNet language models; Zero to Hero parts 2–6) | Karpathy | Repo + videos | https://github.com/karpathy/makemore |
 | Practical Deep Learning for Coders | fast.ai (Jeremy Howard) | Course + free book, ~70 hr | https://course.fast.ai/ |
 | Understanding Deep Learning | Simon Prince | Free book PDF (modern) | https://udlbook.github.io/udlbook/ |
 | Dive into Deep Learning | Zhang, Lipton, Li, Smola | Free interactive book | https://d2l.ai/ |
@@ -72,7 +73,30 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Stanford CS224N: NLP with Deep Learning | Chris Manning et al. | Full course | https://web.stanford.edu/class/cs224n/ |
 | Sampling explained (temperature, top-p/k) | MachineLearningPlus | Blog + code, ~1 hr | https://machinelearningplus.com/gen-ai/llm-temperature-top-p-top-k-explained/ |
 
-### 6. Data: The Underrated Layer
+### 6. Modern LLM Architecture & Scaling Laws
+
+| Resource | Author | Format / Time | Link |
+|---|---|---|---|
+| The Big LLM Architecture Comparison (the baseline GPT-2→modern delta: RoPE, RMSNorm, SwiGLU, GQA/MLA) | Sebastian Raschka | Article, 2–3 hr | https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison |
+| **A Visual Guide to Attention Variants** ⭐ (MHA → GQA → MLA, sparse and hybrid attention) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/visual-attention-variants |
+| Recent Developments in LLM Architectures (KV sharing, mHC, compressed attention — how 2026 models attack long-context cost) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/recent-developments-in-llm-architectures |
+| **My Workflow for Understanding LLM Architectures** ⭐ (the durable skill: how to read the *next* release yourself) | Sebastian Raschka | Article, ~1 hr | https://magazine.sebastianraschka.com/p/workflow-for-understanding-llms |
+| LLM Architecture Gallery (living reference) | Sebastian Raschka | Reference site | https://sebastianraschka.com/llm-architecture-gallery/ |
+| A Dream of Spring for Open-Weight LLMs (10 architectures, early 2026) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/a-dream-of-spring-for-open-weight |
+| From DeepSeek V3 to V3.2: architecture, sparse attention, RL updates | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/technical-deepseek |
+| Mixture of Experts Explained | Hugging Face | Blog, ~1 hr | https://huggingface.co/blog/moe |
+| A Visual Guide to Mixture of Experts | Maarten Grootendorst | Visual blog, ~1 hr | https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts |
+| RoFormer (the RoPE paper) | Su et al. | Paper, reference | https://arxiv.org/abs/2104.09864 |
+| GQA: Training Generalized Multi-Query Transformer Models | Ainslie et al. (Google) | Paper, reference | https://arxiv.org/abs/2305.13245 |
+| Scaling laws literature review (the map of the whole literature) | Epoch AI | Article, 1–2 hr | https://epoch.ai/blog/scaling-laws-literature-review |
+| Scaling Laws for Neural Language Models (Kaplan, 2020) | OpenAI | Paper, reference | https://arxiv.org/abs/2001.08361 |
+| Training Compute-Optimal LLMs (Chinchilla, 2022) | Hoffmann et al. (DeepMind) | Paper, reference | https://arxiv.org/abs/2203.15556 |
+| Go smol or go home (why *inference* cost, not training cost, sets the real optimum) | Harm de Vries | Blog, ~45 min | https://www.harmdevries.com/post/model-size-vs-compute-overhead/ |
+| The Transformer Taxonomy (a compact index of architectural variants) | kipply (Carol Chen) | Reference list | https://kipp.ly/transformer-taxonomy/ |
+
+*The KV cache has no single canonical explainer — it's covered inside the Raschka comparison (via GQA/MLA), kipply's inference arithmetic (§16), and Inside vLLM (§16). Compute one by hand: `2 × layers × kv_heads × head_dim × seq_len × batch × bytes_per_param`.*
+
+### 7. Data: The Underrated Layer
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -80,27 +104,48 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | HF LLM Course — data processing chapters | Hugging Face | Course chapters, ~4 hr | https://huggingface.co/learn/llm-course/en/chapter5/1 |
 | Contamination section, LLM Evaluation Guidebook | Hugging Face | Guidebook section, ~1 hr | https://github.com/huggingface/evaluation-guidebook |
 
-### 7. Fine-Tuning & Post-Training
+### 8. Fine-Tuning & Post-Training
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
 | smol-course — now 6 units: SFT, evaluation, preference alignment, VLMs, RL, synthetic data | Hugging Face | Course, ~3–4 hr/unit (~20 hr total); GPU recommended | https://huggingface.co/learn/smol-course |
 | Fine-tuning LLMs Guide (LoRA/QLoRA) | Unsloth | Docs + free Colabs, 2–5 hr | https://unsloth.ai/docs/get-started/fine-tuning-llms-guide |
 | **RLHF Book** ⭐ | Nathan Lambert (Ai2) | Free open textbook, 20–40 hr | https://rlhfbook.com/ |
+
+*Reasoning models and RL with verifiable rewards — the other half of modern post-training — are in §9.*
+
+### 9. Reasoning & RL with Verifiable Rewards
+
+| Resource | Author | Format / Time | Link |
+|---|---|---|---|
+| **RLHF Book — ch. 14, Reasoning & RLVR** ⭐ | Nathan Lambert (Ai2) | Book chapter, 1–2 hr | https://rlhfbook.com/c/14-reasoning.html |
 | Understanding Reasoning LLMs | Sebastian Raschka | Article, 1–2 hr | https://magazine.sebastianraschka.com/p/understanding-reasoning-llms |
 | DeepSeek-R1 paper (R1-Zero = pure-RL reasoning; R1 = cold-start + multi-stage) | DeepSeek-AI | Paper, 2–3 hr | https://arxiv.org/pdf/2501.12948 |
+| **Unsloth RL / GRPO guide + free Colabs** ⭐ (the hands-on path — a GRPO run you can actually afford) | Unsloth | Docs + notebooks, 3–5 hr | https://docs.unsloth.ai/basics/reinforcement-learning-rl-guide |
+| GRPO Trainer docs (the concrete implementation reference) | Hugging Face TRL | Docs, 1–2 hr | https://huggingface.co/docs/trl/grpo_trainer |
+| open-r1 (open reproduction of the R1 pipeline) | Hugging Face | Repo, browse | https://github.com/huggingface/open-r1 |
+| verifiers (how RL environments are actually structured) | Will Brown | Repo, browse | https://github.com/willccbb/verifiers |
+| Reasoning From Scratch | Sebastian Raschka | Book + repo (in progress) | https://github.com/rasbt/reasoning-from-scratch |
+| Categories of Inference-Time Scaling | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/categories-of-inference-time-scaling |
+| Controlling Reasoning Effort in LLMs (how low/medium/high effort modes are trained) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms |
+| Frontier post-training recipe review (what labs actually run) | Nathan Lambert & Finbarr Timbers | Interview, ~1 hr | https://www.interconnects.ai/p/frontier-post-training-recipe-review |
+| The RLVR Book — esp. ch. 7, reward hacking & verifier robustness | Kian Kyars | Free online book + PDF | https://rlvrbook.com/ |
+| Build a Reasoning Model (From Scratch) — ch. 6, training with RL | Sebastian Raschka | Book (Manning livebook) | https://livebook.manning.com/book/build-a-reasoning-model-from-scratch/chapter-6 |
 
-### 8. Evaluation & Interpretability
+> **On the RLVR Book:** a v0 released April 2026, single-author, openly modelled on Lambert's RLHF book and honest about its LLM-assisted production. It goes deeper on verifier design and reward hacking than anything else free, and it exists precisely because RLHF-book RLVR content dates fast. Treat it as a well-organised current map rather than a settled reference — cross-check load-bearing claims against §9's primary sources.
+
+*This section will churn faster than any other in this file. Treat the mechanics (GRPO, verifiable rewards, reward hacking) as durable and the specific tooling as disposable.*
+
+### 10. Evaluation
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
 | LLM Evaluation Guidebook | Hugging Face (Fourrier) | Guidebook, 5–10 hr | https://github.com/huggingface/evaluation-guidebook |
 | CS224N Benchmarking lecture | Yann Dubois | Video, 1.5 hr | https://www.youtube.com/watch?v=TO0CqzqiArM |
-| Mapping the Mind of a Large Language Model | Anthropic | Article, ~45 min | https://www.anthropic.com/research/mapping-mind-language-model |
-| Transformer Circuits (deep interpretability) | Anthropic | Research site | https://transformer-circuits.pub/ |
-| ARENA Ch. 1: Transformer Interpretability | McDougall / Nanda | Hands-on curriculum, 20–40 hr | https://learn.arena.education/chapter1_transformer_interp/ |
 
-### 9. AI Engineering (Apps, Prompting, RAG, Agents)
+*Interpretability moved to §24 (Track G), where it has room to be a curriculum rather than three bookmarks.*
+
+### 11. AI Engineering (Apps, Prompting, RAG, Agents)
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -129,7 +174,19 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Prompt caching docs (cache-hit input tokens ~0.1× price; writes cost more; output unaffected) | Anthropic | Docs, 1 hr | https://platform.claude.com/docs/en/build-with-claude/prompt-caching |
 | Designing Machine Learning Systems | Chip Huyen | Book ~$45; free summaries | https://github.com/chiphuyen/dmls-book |
 
-### 10. Security & Safety for AI Apps
+### 12. Working with Coding Agents
+*The discipline of using AI to build software — distinct from building AI software. It's the layer you spend the most hours in and the one most people never study deliberately.*
+
+| Resource | Author | Format / Time | Link |
+|---|---|---|---|
+| **Claude Code Best Practices** ⭐ (read as engineering doctrine, not tool tips) | Anthropic | Guide, 1–2 hr | https://www.anthropic.com/engineering/claude-code-best-practices |
+| Using LLMs for code (the honest practitioner account) | Simon Willison | Article, ~1 hr | https://simonwillison.net/2025/Mar/11/using-llms-for-code/ |
+| Writing Tools for Agents (tool design *is* prompt design — pairs with the MCP work) | Anthropic | Article, ~1 hr | https://www.anthropic.com/engineering/writing-tools-for-agents |
+| Effective Context Engineering for AI Agents (re-read with a codebase in mind) | Anthropic | Article, 45 min | https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents |
+| **Components of a Coding Agent** ⭐ (the harness anatomy: tools, memory, repo context) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/components-of-a-coding-agent |
+| Using Local Coding Agents (open-weight models in local harnesses) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/using-local-coding-agents |
+
+### 13. Security & Safety for AI Apps
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -137,7 +194,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Prompt injection series (incl. the "lethal trifecta") | Simon Willison | Blog series, 3–4 hr | https://simonwillison.net/series/prompt-injection/ |
 | NIST AI Risk Management Framework + GenAI Profile | NIST | Framework docs, skim ~1 hr | https://www.nist.gov/itl/ai-risk-management-framework |
 
-### 11. GPUs & CUDA
+### 14. GPUs & CUDA
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -151,7 +208,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | GPU MODE lecture notes (written) | Christian Mills | Notes | https://christianjmills.com/series/notes/cuda-mode-notes.html |
 | GPU MODE resource-stream | GPU MODE community | Curated index | https://github.com/gpu-mode/resource-stream |
 
-### 12. Kernels (Triton, matmul, flash attention)
+### 15. Kernels (Triton, matmul, flash attention)
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -162,7 +219,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | triton-resources (incl. Triton Puzzles) | rkinas | Curated list | https://github.com/rkinas/triton-resources |
 | torch.compile tutorial | PyTorch | Tutorial, 1–2 hr | https://docs.pytorch.org/tutorials/intermediate/torch_compile_tutorial.html |
 
-### 13. Distributed Training, Inference & Data Centers
+### 16. Distributed Training, Inference & Data Centers
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -180,8 +237,16 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Datacenter Anatomy Part 1: Electrical | SemiAnalysis | Article, partial paywall | https://newsletter.semianalysis.com/p/datacenter-anatomy-part-1-electrical |
 | Datacenter Anatomy Part 2: Cooling | SemiAnalysis | Article, partial paywall | https://newsletter.semianalysis.com/p/datacenter-anatomy-part-2-cooling-systems |
 | 100,000 H100 Clusters | SemiAnalysis | Article, partial paywall | https://newsletter.semianalysis.com/p/100000-h100-clusters-power-network |
+| **ML Engineering (the large-run field manual: throughput debugging, fault tolerance, instabilities)** ⭐ | Stas Bekman | Open book, à la carte | https://github.com/stas00/ml-engineering |
+| **The Smol Training Playbook** ⭐ (one team's honest end-to-end account — including the ablations that failed) | Hugging Face | Interactive book, 5–10 hr | https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook |
+| Training using float8 with FSDP2 (why FP8 training is standard and what it costs in stability) | PyTorch | Blog, ~45 min | https://pytorch.org/blog/training-using-float8-fsdp2/ |
+| NCCL (the collectives everything above is built from: all-reduce, all-gather, reduce-scatter) | NVIDIA | Library + docs, reference | https://github.com/NVIDIA/nccl |
+| How to Optimize Transformer-Based Models for Low-Precision Training (the practical FP8/FP4 failure modes) | NVIDIA | Article, ~1.5 hr | https://developer.nvidia.com/blog/how-to-optimize-transformer-based-models-for-low-precision-training/ |
+| SGLang (the second serving engine — RadixAttention / prefix-cache reuse) | LMSYS / SGLang team | Docs, 2–3 hr | https://docs.sglang.ai/ |
+| Mastering LLM Techniques: Inference Optimization (prefill vs decode, in NVIDIA's words) | NVIDIA | Article, 1–2 hr | https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/ |
+| **How To Scale Your Model** ⭐ (the JAX/TPU book — the non-NVIDIA view, and the best free treatment of scaling arithmetic anywhere) | Austin et al. (Google DeepMind) | Interactive book, 10–15 hr | https://jax-ml.github.io/scaling-book/ |
 
-### 14. Staying Current
+### 17. Staying Current
 
 | Resource | Author | Cadence | Link |
 |---|---|---|---|
@@ -191,12 +256,15 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Ahead of AI | Sebastian Raschka | ~Monthly | https://magazine.sebastianraschka.com/ |
 | Simon Willison's blog | Simon Willison | Daily | https://simonwillison.net/ |
 | Eugene Yan's writing | Eugene Yan | Occasional | https://eugeneyan.com/writing/ |
+| **Artifacts Hub & Adoption Dashboard** ⭐ (measured open-ecosystem tracking — beats reading release threads) | Interconnects | Dashboard + posts | https://www.interconnects.ai/p/introducing-our-artifacts-hub-and |
+| LLM Research Papers: the 2026 list | Sebastian Raschka | Curated list, updated | https://magazine.sebastianraschka.com/p/llm-research-papers-2026-part1 |
+| The State of LLMs (annual one-sitting recap) | Sebastian Raschka | Article, ~2 hr | https://magazine.sebastianraschka.com/p/state-of-llms-2025 |
 
 ---
 
 ## Part 2 — Breadth Tracks
 
-### 15. Track A — Computer Vision & Vision-Language Models
+### 18. Track A — Computer Vision & Vision-Language Models
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -209,7 +277,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Guide to YOLO Models | Roboflow | Blog, ~45 min | https://blog.roboflow.com/guide-to-yolo-models/ |
 | What is SAM 2 (Segment Anything)? | Roboflow | Blog, ~45 min | https://blog.roboflow.com/what-is-segment-anything-2/ |
 
-### 16. Track B — Image/Video Generation & Diffusion
+### 19. Track B — Image/Video Generation & Diffusion
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -222,7 +290,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Sora: video generation models as world simulators | OpenAI | Technical report, ~30 min | https://openai.com/index/video-generation-models-as-world-simulators/ |
 | fast.ai Part 2: Foundations → Stable Diffusion | Jeremy Howard | 30+ hr course (mastery option) | https://course.fast.ai/Lessons/part2.html |
 
-### 17. Track C — Speech, Audio & Multimodal
+### 20. Track C — Speech, Audio & Multimodal
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -231,7 +299,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | LLM-based Audio Models (codecs → audio tokens → TTS) | Yatharth S. (HF community) | Blog, ~45 min | https://huggingface.co/blog/YatharthS/llm-tts-models |
 | Multimodality and Large Multimodal Models | Chip Huyen | Blog, ~1.5 hr | https://huyenchip.com/2023/10/10/multimodal.html |
 
-### 18. Track D — General Reinforcement Learning
+### 21. Track D — General Reinforcement Learning
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -245,7 +313,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Gymnasium (environments) | Farama Foundation | Library + tutorials | https://gymnasium.farama.org/ |
 | CS285: Deep RL (grad capstone) | Sergey Levine (Berkeley) | Full course, 60+ hr | https://rail.eecs.berkeley.edu/deeprlcourse/ |
 
-### 19. Track E — Robotics & Embodied AI
+### 22. Track E — Robotics & Embodied AI
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -262,7 +330,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Learning and Control (state-of-the-field essays) | Sergey Levine | Substack | https://sergeylevine.substack.com/ |
 | Physical Intelligence blog | Physical Intelligence | Blog | https://www.physicalintelligence.company/blog |
 
-### 20. Track F — Causal Reasoning & Experimentation
+### 23. Track F — Causal Reasoning & Experimentation
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
@@ -272,14 +340,27 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Trustworthy Online Controlled Experiments | Kohavi, Tang, Xu | Book ~$35 (ch. 1 free at companion site) | https://experimentguide.com/ |
 | DoWhy + EconML (PyWhy) | Microsoft Research | Library + tutorial notebooks, 5–10 hr | https://www.pywhy.org/dowhy/ |
 
-### 21. Phase 4.5 — Production AI Systems
+### 24. Track G — Alignment & Interpretability
 
-*Mostly regrouped from section 9 (that's deliberate — the phase applies material you've already met), plus durable general-purpose tools. This section will churn fastest; expect to swap tools, not concepts.*
+| Resource | Author | Format / Time | Link |
+|---|---|---|---|
+| **AI Safety Fundamentals — Alignment Course** ⭐ | BlueDot Impact | Free course, ~4–5 wks of reading | https://aisafetyfundamentals.com/alignment/ |
+| Mapping the Mind of a Large Language Model | Anthropic | Article, ~45 min | https://www.anthropic.com/research/mapping-mind-language-model |
+| Getting Started in Mechanistic Interpretability (the honest on-ramp) | Neel Nanda | Guide, 1–2 hr | https://www.neelnanda.io/mechanistic-interpretability/getting-started |
+| **ARENA Ch. 1: Transformer Interpretability** ⭐ (the actual hands-on curriculum) | McDougall / Nanda | Hands-on, 20–40 hr | https://learn.arena.education/chapter1_transformer_interp/ |
+| Transformer Circuits (primary sources) | Anthropic | Research site | https://transformer-circuits.pub/ |
+| Introspection in LLMs (where the frontier is) | Anthropic | Research post, ~45 min | https://www.anthropic.com/research/introspection |
+| Learn Mechanistic Interpretability (topic-by-topic reference: QK/OV circuits, superposition, logit lens) | learnmechinterp.com | Reference site | https://learnmechinterp.com/ |
+| Alignment Forum (the field's working discourse — read critically) | Community | Site | https://www.alignmentforum.org/ |
+
+### 25. Phase 4.5 — Production AI Systems
+
+*Mostly regrouped from section 11 (that's deliberate — the phase applies material you've already met), plus durable general-purpose tools. This section will churn fastest; expect to swap tools, not concepts.*
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
 | **AI Engineering — serving, optimization & ops chapters** ⭐ | Chip Huyen | Book chapters (re-read as operator) | https://github.com/chiphuyen/aie-book |
-| Prompt caching docs (see §9 note on true pricing) | Anthropic | Docs, 1 hr | https://platform.claude.com/docs/en/build-with-claude/prompt-caching |
+| Prompt caching docs (see §11 note on true pricing) | Anthropic | Docs, 1 hr | https://platform.claude.com/docs/en/build-with-claude/prompt-caching |
 | LLM Evals FAQ — the CI/production-integration answers | Husain & Shankar | FAQ sections | https://hamel.dev/blog/posts/evals-faq/ |
 | LangSmith evaluation & monitoring concepts | LangChain | Docs (vocabulary transfers to Braintrust/Phoenix) | https://docs.langchain.com/langsmith/evaluation-concepts |
 | OpenTelemetry (structured logs/traces/metrics — the durable observability vocabulary) | CNCF | Docs, survey the concepts pages | https://opentelemetry.io/docs/ |
@@ -287,4 +368,4 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 
 ---
 
-**Budget, honestly:** ~$150 in books if you buy all three core ones (AI Engineering, PMPP, Raschka's LLM book) + possibly ~$49 for one Coursera month in Week 3 + ~$15–50 for Part 2 books (Book of Why; Kohavi optional) + realistically **$50–150 in GPU rental & API credits** for projects (incl. ~$10–30 for Track E sim work) + optional ~$100 nanochat training run + optional ~$100–300 SO-101 robot arm. Everything else is free.
+**Budget, honestly:** ~$150 in books if you buy all three core ones (AI Engineering, PMPP, Raschka's LLM book) + possibly ~$49 for one Coursera month in Week 3 + ~$15–50 for Part 2 books (Book of Why; Kohavi optional) + realistically **$60–180 in GPU rental & API credits** for projects (incl. ~$10–30 for Track E sim work and ~$5–20 for Week 15's GRPO run) + optional ~$100 nanochat training run + optional ~$100–300 SO-101 robot arm. Everything else is free.
