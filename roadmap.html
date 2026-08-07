@@ -425,7 +425,7 @@ footer button:hover{color:#f87171;border-color:#f87171}
 </div></details>
 
 <details class="phase" id="p6">
-<summary><span class="ph-num">PH 6</span><div class="ph-title">Scale: Clusters, Inference, Data Centers<small>WEEKS 30–34 · THOUSANDS OF GPUS, ONE MODEL</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
+<summary><span class="ph-num">PH 6</span><div class="ph-title">Scale: Training Clusters, Inference, Data Centers<small>WEEKS 30–34 · THOUSANDS OF GPUS, ONE MODEL</small></div><div class="ph-right"><span class="ph-count"></span><span class="chev">▶</span></div></summary>
 <div class="ph-body">
 <div class="wk"><h4>Week 30 — Distributed training I: the theory</h4><ul class="tasks">
 <li class="task"><span class="body"><span class="d">DAY 1</span>Lilian Weng — <a href="https://lilianweng.github.io/posts/2021-09-25-train-large/" target="_blank">How to Train Really Large Models on Many GPUs</a> (pre-read) <span class="tag s">SURVEY</span></span></li>
@@ -509,7 +509,7 @@ footer button:hover{color:#f87171;border-color:#f87171}
 <li class="task"><span class="body">HF <a href="https://huggingface.co/learn/diffusion-course/unit0/1" target="_blank">Diffusion Models Course</a> — explicit survey cut: <b>Units 1–2</b> (DDPMs from scratch + fine-tuning/guidance) fill these two weeks <span class="tag c">CORE</span>; Units 3–4 (SD internals + going further) if the track hooks you <span class="tag r">REF</span></span></li>
 </ul></div>
 <div class="wk"><h4>Week B4 — The modern frontier</h4><ul class="tasks">
-<li class="task"><span class="body">MIT <a href="https://diffusion.csail.mit.edu/" target="_blank">6.S184: Flow Matching &amp; Diffusion Models</a> at survey depth — lectures 1–3 + skim notes (math-forward: prereqs incl. linear algebra, real analysis, probability; the full course with labs is the mastery option and the best single treatment of how current image/video models work) <span class="tag s">SURVEY</span></span></li>
+<li class="task"><span class="body">MIT <a href="https://diffusion.csail.mit.edu/" target="_blank">6.S184: Flow Matching &amp; Diffusion Models</a> at survey depth — lectures 1–3 + skim notes (math-forward: prereqs incl. linear algebra, real analysis, probability; the full course with labs is the mastery option <span class="tag c">CORE</span> and the best single treatment of how current image/video models work) <span class="tag s">SURVEY</span></span></li>
 <li class="task"><span class="body">Weng — <a href="https://lilianweng.github.io/posts/2024-04-12-diffusion-video/" target="_blank">Diffusion Models for Video Generation</a> + OpenAI — <a href="https://openai.com/index/video-generation-models-as-world-simulators/" target="_blank">Sora technical report</a> <span class="tag s">SURVEY</span></span></li>
 </ul></div>
 <div class="wk"><h4>Week B5 — Project</h4><ul class="tasks">
@@ -663,6 +663,7 @@ const R=[
 ["Neural Networks series (incl. GPT/attention)","3Blue1Brown · videos ~4 hr","https://www.3blue1brown.com/topics/neural-networks"],
 ["★ Neural Networks: Zero to Hero","Karpathy · code-along 30–50 hr","https://karpathy.ai/zero-to-hero.html"],
 ["micrograd","Karpathy · repo + video","https://github.com/karpathy/micrograd"],
+["makemore","Karpathy · bigrams → MLP → WaveNet, repo + videos","https://github.com/karpathy/makemore"],
 ["Practical Deep Learning for Coders","fast.ai · course + free book ~70 hr","https://course.fast.ai/"],
 ["Understanding Deep Learning","Simon Prince · free modern book PDF","https://udlbook.github.io/udlbook/"],
 ["Dive into Deep Learning","Zhang et al. · free interactive book","https://d2l.ai/"],
@@ -721,7 +722,7 @@ const R=[
 ["10 · Evaluation","Interpretability moved to §24 (Track G), where it has room to be a curriculum rather than three bookmarks.",[
 ["LLM Evaluation Guidebook","HF (Fourrier) · 5–10 hr","https://github.com/huggingface/evaluation-guidebook"],
 ["CS224N Benchmarking lecture","Yann Dubois · video 1.5 hr","https://www.youtube.com/watch?v=TO0CqzqiArM"]]],
-["11 · AI Engineering",null,[
+["11 · AI Engineering (Apps, Prompting, RAG, Agents)",null,[
 ["★ AI Engineering (book)","Chip Huyen · ~$45; free repo","https://github.com/chiphuyen/aie-book"],
 ["Chip Huyen's blog","free book-quality posts","https://huyenchip.com/blog/"],
 ["Year of Building with LLMs I–III","Yan, Husain et al. · 3–4 hr","https://www.oreilly.com/radar/what-we-learned-from-a-year-of-building-with-llms-part-i/"],
@@ -751,7 +752,7 @@ const R=[
 ["Using LLMs for code","Simon Willison · the honest practitioner account","https://simonwillison.net/2025/Mar/11/using-llms-for-code/"],
 ["Writing Tools for Agents","Anthropic · tool design IS prompt design","https://www.anthropic.com/engineering/writing-tools-for-agents"],
 ["Effective Context Engineering","Anthropic · re-read with a codebase in mind","https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"]]],
-["13 · Security & Safety",null,[
+["13 · Security & Safety for AI Apps",null,[
 ["★ OWASP Top 10 for LLM Apps","OWASP GenAI · 2–3 hr","https://genai.owasp.org/llm-top-10/"],
 ["Prompt injection series (lethal trifecta)","Simon Willison · 3–4 hr","https://simonwillison.net/series/prompt-injection/"],
 ["NIST AI RMF + GenAI Profile","NIST · skim ~1 hr","https://www.nist.gov/itl/ai-risk-management-framework"]]],
@@ -765,14 +766,14 @@ const R=[
 ["★ GPU MODE lectures + Discord","Saroufim, Köpf + community","https://www.gpumode.com/lectures"],
 ["GPU MODE lecture notes","Christian Mills","https://christianjmills.com/series/notes/cuda-mode-notes.html"],
 ["GPU MODE resource-stream","community index","https://github.com/gpu-mode/resource-stream"]]],
-["15 · Kernels",null,[
+["15 · Kernels (Triton, matmul, flash attention)",null,[
 ["Official Triton tutorials","Triton · 6–10 hr","https://triton-lang.org/main/getting-started/tutorials/index.html"],
 ["Optimize a CUDA Matmul Kernel","Simon Boehm · 3–6 hr","https://siboehm.com/articles/22/CUDA-MMM"],
 ["Advanced Matmul on Modern GPUs","Aman Salykov · 3–5 hr","https://salykova.github.io/sgemm-gpu"],
 ["ELI5: FlashAttention","Aleksa Gordić · 1–1.5 hr","https://gordicaleksa.medium.com/eli5-flash-attention-5c44017022ad"],
 ["triton-resources (+ Puzzles)","rkinas · curated list","https://github.com/rkinas/triton-resources"],
 ["torch.compile tutorial","PyTorch · 1–2 hr","https://docs.pytorch.org/tutorials/intermediate/torch_compile_tutorial.html"]]],
-["16 · Distributed, Inference & Data Centers",null,[
+["16 · Distributed Training, Inference & Data Centers",null,[
 ["★ The Ultra-Scale Playbook","HF · 10–20 hr, survey first","https://huggingface.co/spaces/nanotron/ultrascale-playbook"],
 ["Train Really Large Models","Lilian Weng · ~1 hr","https://lilianweng.github.io/posts/2021-09-25-train-large/"],
 ["Distributed Training & Finetuning","Sumanth Hegde · 1–2 hr","https://sumanthrh.com/post/distributed-and-efficient-finetuning/"],
@@ -801,7 +802,7 @@ const R=[
 ["Ahead of AI","Raschka · ~monthly","https://magazine.sebastianraschka.com/"],
 ["Simon Willison's blog","daily","https://simonwillison.net/"],
 ["Eugene Yan's writing","occasional","https://eugeneyan.com/writing/"]]],
-["18 · Track A — Vision & VLMs",null,[
+["18 · Track A — Computer Vision & Vision-Language Models",null,[
 ["CS231n","Stanford · full course, selective","https://cs231n.stanford.edu/"],
 ["CS231n Spring 2025 lectures","Stanford · videos","https://www.youtube.com/playlist?list=PLoROMvodv4rOmsNzYBMe0gJY2XS8AQg16"],
 ["★ Community Computer Vision Course","HF · 25–40 hr; Unit 4 = best free VLM unit","https://huggingface.co/learn/computer-vision-course/en/unit0/welcome/welcome"],
@@ -811,7 +812,7 @@ const R=[
 ["Understanding Multimodal LLMs","Raschka · ~1 hr","https://magazine.sebastianraschka.com/p/understanding-multimodal-llms"],
 ["Guide to YOLO Models","Roboflow · ~45 min","https://blog.roboflow.com/guide-to-yolo-models/"],
 ["What is SAM 2?","Roboflow · ~45 min","https://blog.roboflow.com/what-is-segment-anything-2/"]]],
-["19 · Track B — Diffusion",null,[
+["19 · Track B — Image/Video Generation & Diffusion",null,[
 ["The Illustrated Stable Diffusion","Jay Alammar · ~45 min","https://jalammar.github.io/illustrated-stable-diffusion/"],
 ["What are Diffusion Models?","Lilian Weng · math-heavy, 2–3 hr","https://lilianweng.github.io/posts/2021-07-11-diffusion-models/"],
 ["The Annotated Diffusion Model","Rogge & Rasul (HF) · ~2 hr","https://huggingface.co/blog/annotated-diffusion"],
@@ -820,12 +821,12 @@ const R=[
 ["Diffusion Models for Video","Lilian Weng · 1–1.5 hr","https://lilianweng.github.io/posts/2024-04-12-diffusion-video/"],
 ["Sora: world simulators","OpenAI · ~30 min","https://openai.com/index/video-generation-models-as-world-simulators/"],
 ["fast.ai Part 2 → Stable Diffusion","Jeremy Howard · 30+ hr mastery","https://course.fast.ai/Lessons/part2.html"]]],
-["20 · Track C — Speech & Audio",null,[
+["20 · Track C — Speech, Audio & Multimodal",null,[
 ["★ HF Audio Course","HF · 8 units, 15–20 hr","https://huggingface.co/learn/audio-course/chapter0/introduction"],
 ["Introducing Whisper","OpenAI · ~30 min","https://openai.com/index/whisper/"],
 ["LLM-based Audio Models","Yatharth S. (HF) · ~45 min","https://huggingface.co/blog/YatharthS/llm-tts-models"],
 ["Multimodality and LMMs","Chip Huyen · ~1.5 hr","https://huyenchip.com/2023/10/10/multimodal.html"]]],
-["21 · Track D — Reinforcement Learning",null,[
+["21 · Track D — General Reinforcement Learning",null,[
 ["RL: An Introduction (2nd ed.)","Sutton & Barto · free PDF","http://incompleteideas.net/book/the-book-2nd.html"],
 ["★ David Silver's RL course","DeepMind/UCL · 10 lectures ~15 hr","https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ"],
 ["Spinning Up in Deep RL","OpenAI · 2–4 wks","https://spinningup.openai.com/en/latest/"],
@@ -848,7 +849,7 @@ const R=[
 ["Robotic Manipulation","Tedrake (MIT) · free book + lectures","https://manipulation.csail.mit.edu/"],
 ["Learning and Control","Sergey Levine · Substack","https://sergeylevine.substack.com/"],
 ["Physical Intelligence blog","π-series announcements","https://www.physicalintelligence.company/blog"]]],
-["23 · Track F — Causal Inference",null,[
+["23 · Track F — Causal Reasoning & Experimentation",null,[
 ["The Book of Why","Pearl & Mackenzie · ~$15, ~15 hr","https://www.amazon.com/Book-Why-Science-Cause-Effect/dp/046509760X"],
 ["★ Causal Inference for the Brave and True","Facure · free Python book 30–50 hr","https://matheusfacure.github.io/python-causality-handbook/"],
 ["Causal Inference: The Mixtape","Cunningham · free, econometrics","https://mixtape.scunning.com/"],

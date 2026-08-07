@@ -36,6 +36,7 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Neural Networks series (incl. GPT/attention chapters) | 3Blue1Brown | Videos, ~4 hr | https://www.3blue1brown.com/topics/neural-networks |
 | **Neural Networks: Zero to Hero** ⭐ | Andrej Karpathy | Code-along videos, 30–50 hr | https://karpathy.ai/zero-to-hero.html |
 | micrograd (build backprop from scratch) | Karpathy | Repo + video | https://github.com/karpathy/micrograd |
+| makemore (bigrams → MLP → WaveNet language models; Zero to Hero parts 2–6) | Karpathy | Repo + videos | https://github.com/karpathy/makemore |
 | Practical Deep Learning for Coders | fast.ai (Jeremy Howard) | Course + free book, ~70 hr | https://course.fast.ai/ |
 | Understanding Deep Learning | Simon Prince | Free book PDF (modern) | https://udlbook.github.io/udlbook/ |
 | Dive into Deep Learning | Zhang, Lipton, Li, Smola | Free interactive book | https://d2l.ai/ |
