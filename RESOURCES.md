@@ -1,6 +1,6 @@
 # The Full-Stack AI Resource Library
 
-Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless marked otherwise.** ⭐ = if you only do one thing in that section, do this one.
+Companion to [ROADMAP.md](ROADMAP.md). Cross-references use **Phase · Step** — there are no global week numbers. Links verified August 2026. **Free unless marked otherwise.** ⭐ = if you only do one thing in that section, do this one.
 
 ---
 
@@ -77,7 +77,13 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 
 | Resource | Author | Format / Time | Link |
 |---|---|---|---|
-| **The Big LLM Architecture Comparison** ⭐ (DeepSeek-V3 → Kimi K2: RoPE, RMSNorm, SwiGLU, GQA/MLA, sliding-window & hybrid attention — the whole GPT-2→2026 delta in one article) | Sebastian Raschka | Article, 2–3 hr | https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison |
+| The Big LLM Architecture Comparison (the baseline GPT-2→modern delta: RoPE, RMSNorm, SwiGLU, GQA/MLA) | Sebastian Raschka | Article, 2–3 hr | https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison |
+| **A Visual Guide to Attention Variants** ⭐ (MHA → GQA → MLA, sparse and hybrid attention) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/visual-attention-variants |
+| Recent Developments in LLM Architectures (KV sharing, mHC, compressed attention — how 2026 models attack long-context cost) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/recent-developments-in-llm-architectures |
+| **My Workflow for Understanding LLM Architectures** ⭐ (the durable skill: how to read the *next* release yourself) | Sebastian Raschka | Article, ~1 hr | https://magazine.sebastianraschka.com/p/workflow-for-understanding-llms |
+| LLM Architecture Gallery (living reference) | Sebastian Raschka | Reference site | https://sebastianraschka.com/llm-architecture-gallery/ |
+| A Dream of Spring for Open-Weight LLMs (10 architectures, early 2026) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/a-dream-of-spring-for-open-weight |
+| From DeepSeek V3 to V3.2: architecture, sparse attention, RL updates | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/technical-deepseek |
 | Mixture of Experts Explained | Hugging Face | Blog, ~1 hr | https://huggingface.co/blog/moe |
 | A Visual Guide to Mixture of Experts | Maarten Grootendorst | Visual blog, ~1 hr | https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts |
 | RoFormer (the RoPE paper) | Su et al. | Paper, reference | https://arxiv.org/abs/2104.09864 |
@@ -120,6 +126,9 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | open-r1 (open reproduction of the R1 pipeline) | Hugging Face | Repo, browse | https://github.com/huggingface/open-r1 |
 | verifiers (how RL environments are actually structured) | Will Brown | Repo, browse | https://github.com/willccbb/verifiers |
 | Reasoning From Scratch | Sebastian Raschka | Book + repo (in progress) | https://github.com/rasbt/reasoning-from-scratch |
+| Categories of Inference-Time Scaling | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/categories-of-inference-time-scaling |
+| Controlling Reasoning Effort in LLMs (how low/medium/high effort modes are trained) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms |
+| Frontier post-training recipe review (what labs actually run) | Nathan Lambert & Finbarr Timbers | Interview, ~1 hr | https://www.interconnects.ai/p/frontier-post-training-recipe-review |
 
 *This section will churn faster than any other in this file. Treat the mechanics (GRPO, verifiable rewards, reward hacking) as durable and the specific tooling as disposable.*
 
@@ -170,6 +179,8 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Using LLMs for code (the honest practitioner account) | Simon Willison | Article, ~1 hr | https://simonwillison.net/2025/Mar/11/using-llms-for-code/ |
 | Writing Tools for Agents (tool design *is* prompt design — pairs with the MCP work) | Anthropic | Article, ~1 hr | https://www.anthropic.com/engineering/writing-tools-for-agents |
 | Effective Context Engineering for AI Agents (re-read with a codebase in mind) | Anthropic | Article, 45 min | https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents |
+| **Components of a Coding Agent** ⭐ (the harness anatomy: tools, memory, repo context) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/components-of-a-coding-agent |
+| Using Local Coding Agents (open-weight models in local harnesses) | Sebastian Raschka | Article, ~1.5 hr | https://magazine.sebastianraschka.com/p/using-local-coding-agents |
 
 ### 13. Security & Safety for AI Apps
 
@@ -240,6 +251,9 @@ Companion to [ROADMAP.md](ROADMAP.md). Links verified August 2026. **Free unless
 | Ahead of AI | Sebastian Raschka | ~Monthly | https://magazine.sebastianraschka.com/ |
 | Simon Willison's blog | Simon Willison | Daily | https://simonwillison.net/ |
 | Eugene Yan's writing | Eugene Yan | Occasional | https://eugeneyan.com/writing/ |
+| **Artifacts Hub & Adoption Dashboard** ⭐ (measured open-ecosystem tracking — beats reading release threads) | Interconnects | Dashboard + posts | https://www.interconnects.ai/p/introducing-our-artifacts-hub-and |
+| LLM Research Papers: the 2026 list | Sebastian Raschka | Curated list, updated | https://magazine.sebastianraschka.com/p/llm-research-papers-2026-part1 |
+| The State of LLMs (annual one-sitting recap) | Sebastian Raschka | Article, ~2 hr | https://magazine.sebastianraschka.com/p/state-of-llms-2025 |
 
 ---
 
