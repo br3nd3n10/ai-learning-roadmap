@@ -58,9 +58,6 @@ a[target="_blank"]::after{content:"↗";font-size:.7em;margin-left:.2em;opacity:
 .hero h1{font-family:var(--serif);font-size:clamp(38px,5.5vw,58px);font-weight:400;line-height:1.05;letter-spacing:-.01em}
 .hero h1 em{color:var(--amber);font-style:italic}
 .hero .sub{color:var(--dim);max-width:640px;margin-top:16px}
-.meta-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;font-family:var(--mono);font-size:11px}
-.meta-strip span{border:1px solid var(--line2);border-radius:99px;padding:4px 12px;color:var(--dim)}
-.meta-strip b{color:var(--text);font-weight:500}
 
 /* ---------- stack diagram ---------- */
 
@@ -113,6 +110,7 @@ a[target="_blank"]::after{content:"↗";font-size:.7em;margin-left:.2em;opacity:
 .tag.c{color:var(--core);border:1px solid rgba(74,222,128,.35);background:rgba(74,222,128,.08)}
 .tag.s{color:var(--survey);border:1px solid rgba(96,165,250,.35);background:rgba(96,165,250,.08)}
 .tag.r{color:var(--ref);border:1px solid rgba(139,147,168,.35);background:rgba(139,147,168,.08)}
+.tag.f{color:#f87171;border:1px solid rgba(248,113,113,.35);background:rgba(248,113,113,.08)}
 
 /* ---------- part dividers ---------- */
 .part-div{margin:64px 0 8px;display:flex;align-items:baseline;gap:16px}
@@ -173,15 +171,19 @@ li.task .d{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-ri
 .stepn{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;
   margin-right:9px;border:1px solid var(--line2);border-radius:6px;font-family:var(--mono);font-size:11px;
   color:var(--amber);background:var(--panel2);vertical-align:middle}
-.branchbox{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:16px 18px;margin:18px 0}
-.branchbox .bt{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--faint);text-transform:uppercase;margin-bottom:10px}
-.branchcols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
-.branchcol{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--panel2)}
-.branchcol h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;font-weight:600;margin-bottom:8px}
-.branchcol.up h5{color:#7dd3fc} .branchcol.down h5{color:#fb923c}
-.branchcol p{font-size:13px;color:var(--dim);margin:0}
-.branchcol .ph{font-size:13.5px;color:var(--text);margin:2px 0}
-@media(max-width:720px){.branchcols{grid-template-columns:1fr}}
+.descfork{margin:26px 0 8px}
+.forkintro{font-size:13.5px;color:var(--dim);max-width:660px;margin-bottom:14px}
+.forkintro b{color:var(--text)}
+.forkwrap{display:grid;grid-template-columns:200px 1fr;gap:0 18px}
+.forksvg{width:200px;height:100%;grid-row:1/3;display:block}
+.forkrow{padding:14px 4px 14px 10px}
+.forkrow h5{font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:600;margin-bottom:6px}
+.forkrow.u h5{color:#7dd3fc} .forkrow.d h5{color:#fb923c}
+.forkrow p{font-size:13.5px;color:var(--dim)}
+.forkrow p b{color:var(--text);font-weight:500}
+.forkfoot{margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--faint);border-top:1px dashed var(--line2);padding-top:12px}
+.forkfoot b{color:var(--dim);font-weight:500}
+@media(max-width:720px){.forkwrap{grid-template-columns:1fr}.forksvg{display:none}}
 .rsec{margin:26px 0}
 .rsec h3{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:4px}
 .rsec .rnote{font-size:12.5px;color:var(--faint);font-style:italic;margin-bottom:10px}
@@ -195,12 +197,42 @@ a.rcard::after{content:none}
 .rcard .rm{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:4px}
 .rcard:hover .rn{color:var(--amber)}
 
-/* ---------- how-to ---------- */
-ol.rules{counter-reset:r;list-style:none;margin-top:8px}
-ol.rules li{counter-increment:r;position:relative;padding:10px 0 10px 44px;border-bottom:1px solid var(--line);font-size:14px;color:var(--dim)}
-ol.rules li b{color:var(--text)}
-ol.rules li::before{content:counter(r,decimal-leading-zero);position:absolute;left:0;top:11px;font-family:var(--mono);
-  font-size:12px;color:var(--amber)}
+/* ---------- how-to: the field manual ---------- */
+.subhead{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--faint);text-transform:uppercase;
+  margin:30px 0 12px;display:flex;align-items:center;gap:12px}
+.subhead::after{content:"";flex:1;height:1px;background:var(--line)}
+.rulegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rule{border:1px solid var(--line);border-radius:9px;background:var(--panel);padding:13px 16px}
+.rule .rnum{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.1em;margin-bottom:4px}
+.rule b{color:var(--text);font-weight:500}
+.rule p{font-size:13.5px;color:var(--dim)}
+.refcols{display:grid;grid-template-columns:1.2fr 1fr;gap:10px}
+.refpanel{border:1px solid var(--line);border-radius:9px;background:var(--panel);padding:14px 16px}
+.refpanel h6{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--faint);text-transform:uppercase;margin-bottom:10px}
+.dep{font-family:var(--mono);font-size:12px;color:var(--dim);padding:5px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:baseline}
+.dep:last-of-type{border-bottom:none}
+.dep .chain{color:var(--text);white-space:nowrap}
+.dep .chain em{color:var(--amber);font-style:normal}
+.dep .why{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.depnote{font-size:12.5px;color:var(--dim);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line2)}
+.depnote b{color:var(--text);font-weight:500}
+.bud{width:100%;border-collapse:collapse;font-size:13px}
+.bud td{padding:5px 0;border-bottom:1px solid var(--line);color:var(--dim)}
+.bud td:last-child{text-align:right;font-family:var(--mono);font-size:11.5px;color:var(--text);white-space:nowrap}
+.bud tr:last-child td{border-bottom:none;color:var(--core)}
+.bud .opt{color:var(--faint)}
+details.proto{border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:10px 0;overflow:hidden}
+details.proto summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:14px;align-items:baseline;user-select:none}
+details.proto summary::-webkit-details-marker{display:none}
+details.proto summary:hover{background:var(--panel2)}
+details.proto summary .pnum{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.1em}
+details.proto summary b{color:var(--text);font-weight:500}
+details.proto summary .gist{color:var(--faint);font-size:13px;flex:1}
+details.proto[open] summary .chev{transform:rotate(90deg)}
+details.proto .pbody{padding:2px 16px 16px;font-size:13.5px;color:var(--dim);border-top:1px solid var(--line)}
+details.proto .pbody p{margin-top:10px}
+details.proto .pbody b{color:var(--text);font-weight:500}
+@media(max-width:820px){.rulegrid,.refcols{grid-template-columns:1fr}}
 
 footer{margin-top:70px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 footer button{background:none;border:1px solid var(--line2);color:var(--faint);font-family:var(--mono);font-size:10px;
@@ -234,12 +266,6 @@ footer button:hover{color:#f87171;border-color:#f87171}
   <div class="eyebrow">A Learning Operating System · rev 5 · Aug 2026</div>
   <h1>Down the stack,<br>to the <em>metal</em> &amp; back.</h1>
   <p class="sub">From vibe-coding apps that call AI, to understanding what models are, how they're trained, how they're made fast, how they're served from data centers, what's actually going on inside them — and across the wider AI landscape. Check things off as you go; progress is saved in this browser.</p>
-  <div class="meta-strip">
-    <span>Spine: <b>4 phases, in order</b></span>
-    <span>Then: <b>2 descents, either first</b></span>
-    <span>A step: <b>~6–9 hrs of work</b></span>
-    <span>Cost: <b>almost all free</b></span>
-  </div>
 </div>
 
 <div class="mapwrap">
@@ -256,16 +282,24 @@ footer button:hover{color:#f87171;border-color:#f87171}
   </svg>
   <div class="mapfoot"><b>Read it as:</b> you start at the top, dive to the bottom of what you can build by hand (Phases 1–2), come back up through how real models are made (Phase 3) — and then choose your direction. The two descents are independent: Phase 4 needs nothing from Phase 3, Phase 5 needs nothing from Phase 4. &nbsp;·&nbsp; <b>Cross-cutting:</b> production ops (Phase 4.5) — evals-in-CI, monitoring, versioning, rollback.</div>
 </div>
-<div class="branchbox">
-  <div class="bt">Which descent first?</div>
-  <p style="font-size:13.5px;color:var(--dim);margin-bottom:12px"><b style="color:var(--text)">Phases 0 → 1 → 2 → 3 genuinely compound</b> — Phase 2 needs Phase 1's calculus, and Phase 3 dissects the exact GPT you built in Phase 2. Then the chain <i>ends</i>, and the two descents are yours to order.</p>
-  <div class="branchcols">
-    <div class="branchcol up"><h5>↑ TAKE UP FIRST IF…</h5>
-      <p>…you want your shipped apps to get better soonest. This is your home turf, upgraded: evals, agents, security, production. Pays off immediately.</p></div>
-    <div class="branchcol down"><h5>↓ TAKE DOWN FIRST IF…</h5>
-      <p>…"how does this <i>actually</i> work down there" is the thing pulling you through. Be honest about this — it's the moment most people stall if they detour.</p></div>
+<div class="descfork">
+  <p class="forkintro"><b>The spine compounds; the descents don't.</b> Phase 2 needs Phase 1's calculus, Phase 3 dissects the exact GPT you built in Phase 2 — then the chain ends, and the order is yours.</p>
+  <div class="forkwrap">
+    <svg class="forksvg" viewBox="0 0 200 190" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The spine forks: products first, or metal first — either order works.">
+      <path d="M0,95 H70" stroke="#ffb454" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <circle cx="74" cy="95" r="4" fill="#ffb454"/>
+      <path d="M78,93 C 120,88 128,58 160,50" stroke="#7dd3fc" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M78,97 C 120,102 128,132 160,140" stroke="#fb923c" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M154,44 L164,49 L155,56" stroke="#7dd3fc" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M154,134 L164,141 L155,146" stroke="#fb923c" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="30" y="82" font-family="IBM Plex Mono" font-size="9" letter-spacing="1.5" fill="#5d6478">PHASE 3</text>
+    </svg>
+    <div class="forkrow u"><h5>↑ PRODUCTS FIRST</h5>
+      <p>if you want <b>your shipped apps to get better soonest</b>. Home turf, upgraded: evals, agents, security, production. Pays off immediately.</p></div>
+    <div class="forkrow d"><h5>↓ METAL FIRST</h5>
+      <p>if <b>"how does this <i>actually</i> work down there"</b> is the thing pulling you through. Be honest — this is where most people stall if they detour.</p></div>
   </div>
-  <p style="margin-top:12px;font-size:12.5px;color:var(--faint)">Only coupling across branches: Phase 6 wants Phase 5's intuitions <i>and</i> Phase 3 · Step 2's KV cache. Everything else is free — including interleaving them.</p>
+  <div class="forkfoot"><b>Only coupling:</b> Phase 6 wants Phase 5's intuitions + Phase 3 · Step 2's KV cache. Everything else is free — interleaving included.</div>
 </div>
 
 <div class="legend">
@@ -688,17 +722,50 @@ footer button:hover{color:#f87171;border-color:#f87171}
 
 <!-- ===================== HOW TO USE ===================== -->
 <div class="part-div" id="howto"><span class="pn">PROTOCOL</span><h2>How to Use This Plan</h2></div>
-<ol class="rules">
-<li><b>Track progress here</b> — checkboxes save to this browser. The markdown files remain the source of truth for editing.</li>
-<li><b>Core &gt; Survey &gt; Reference is the pressure valve.</b> Behind schedule? Surveys become skims, references get skipped. The CORE spine is non-negotiable; everything else flexes.</li>
-<li><b>Projects &gt; completion.</b> Skipping a step of videos to finish a milestone is always the right trade.</li>
-<li><b>When stuck, switch resources, not topics.</b> Every topic has 2–3 alternative explainers in the library below.</li>
-<li><b>Dependencies:</b> 0 → 1 → 2 → 3 is the hard chain (Phase 3 · Step 2 needs Step 1's GPT-2). 4 → 4.5 go together; 5 and Part 2 branch off 2–3; 6 wants 5 <i>and</i> Phase 3 · Step 2's KV cache. In Part 2: D before E; A before B is nice; F needs all of Phase 1; G wants Phase 3; C floats free. <b>The real branch point is the end of Phase 3</b> — from there every track is profitably open, so if one is calling louder than the next phase, take it.</li>
-<li><b>Budget:</b> ~$150 books (all three) + possibly ~$49 one Coursera month + $60–180 GPU/API credits (incl. ~$10–30 Track E sim, ~$5–20 Phase 3 GRPO) + optional ~$100 nanochat + optional ~$100–300 SO-101 arm. Everything else free.</li>
-<li><b>Use AI to learn AI.</b> Ask Claude to quiz you, re-explain stuck concepts, or review your micrograd. Just write the code yourself first.</li>
-<li><b>Retention.</b> Without a review loop you won't remember Phase 2 by the time you reach Phase 6, and the later phases quietly depend on the earlier ones. Two cheap habits (~8 hr total): keep a <code>NOTES.md</code> per phase (three bullets a week — what clicked, what didn't), and at every phase boundary spend one hour re-deriving something from <i>two</i> phases back from a blank file. If you can't, that's the review loop doing its job.</li>
-<li><b>The Pre-Phase Audit Protocol.</b> Before starting any phase or track, ask Claude: <i>"Audit Phase N first."</i> The audit verifies every link, re-checks availability claims, and — critically — asks whether the <i>practice</i> changed, not just whether the link resolves. The real decay mode is a resource that loads perfectly while teaching a superseded default (chunking-heavy RAG written for 8k context windows; PPO-shaped RLHF written before GRPO; dense-model assumptions written before MoE went mainstream). Of each CORE item ask: <i>is this still how it's done, or just still online?</i> Then research what's genuinely new (filtered by the end-to-end-systems principle), propose a diff, update the files + this page. Depth by volatility — <b style="color:var(--core)">stable</b> (skip / 5-min check): Phases 0–2, math, Track D foundations, Track F · <b style="color:var(--survey)">medium</b> (light audit): Phase 3 Steps 1, 3–6; Phase 5; deep RL · <b style="color:#f87171">fast-moving</b> (full audit): Phase 3 Steps 2, 6–7; Phases 4, 4.5, 6 and Tracks A, B, C, E, G. Last full revision: Aug 2026 (structural review) — content gets refreshed exactly when it becomes relevant to you.</li>
-</ol>
+<div class="subhead">The rules</div>
+<div class="rulegrid">
+  <div class="rule"><div class="rnum">01</div><p><b>Track progress here.</b> Checkboxes save to this browser; the markdown files stay the source of truth for editing.</p></div>
+  <div class="rule"><div class="rnum">02</div><p><b>Core &gt; Survey &gt; Ref is the pressure valve.</b> Behind schedule? Surveys become skims, refs get skipped. The CORE spine never flexes.</p></div>
+  <div class="rule"><div class="rnum">03</div><p><b>Projects &gt; completion.</b> Skipping a step of videos to finish a milestone is always the right trade.</p></div>
+  <div class="rule"><div class="rnum">04</div><p><b>Stuck? Switch resources, not topics.</b> Every topic has 2–3 alternative explainers in the library below.</p></div>
+  <div class="rule"><div class="rnum">05</div><p><b>Use AI to learn AI.</b> Ask Claude to quiz you, re-explain stuck concepts, or review your micrograd — just write the code yourself first.</p></div>
+</div>
+
+<div class="subhead">Reference</div>
+<div class="refcols">
+  <div class="refpanel"><h6>Dependencies</h6>
+    <div class="dep"><span class="chain">0 <em>→</em> 1 <em>→</em> 2 <em>→</em> 3</span><span class="why">the only hard chain (Phase 3 · Step 2 needs Step 1's GPT-2)</span></div>
+    <div class="dep"><span class="chain">4 <em>→</em> 4.5</span><span class="why">go together</span></div>
+    <div class="dep"><span class="chain">5 <em>←</em> 2–3</span><span class="why">branches off the spine, any time (Part 3 too)</span></div>
+    <div class="dep"><span class="chain">6 <em>←</em> 5 + 3·2</span><span class="why">wants kernels and the KV cache</span></div>
+    <div class="dep"><span class="chain">D<em>→</em>E · A<em>→</em>B · F<em>←</em>Ph1 · G<em>←</em>Ph3 · C free</span><span class="why">Part 3</span></div>
+    <div class="depnote"><b>The real branch point is the end of Phase 3</b> — from there every track is profitably open, so if one is calling louder than the next phase, take it.</div>
+  </div>
+  <div class="refpanel"><h6>Budget</h6>
+    <table class="bud">
+      <tr><td>Books (all three)</td><td>~$150</td></tr>
+      <tr><td>Coursera, one month <span class="opt">· optional</span></td><td>~$49</td></tr>
+      <tr><td>GPU / API credits <span class="opt">· incl. Track E sim + GRPO</span></td><td>$60–180</td></tr>
+      <tr><td>nanochat <span class="opt">· optional</span></td><td>~$100</td></tr>
+      <tr><td>SO-101 arm <span class="opt">· optional</span></td><td>$100–300</td></tr>
+      <tr><td>Everything else</td><td>free</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subhead">The two protocols</div>
+<details class="proto">
+  <summary><span class="pnum">P1</span><b>Retention</b><span class="gist">two cheap habits so Phase 2 survives until Phase 6</span><span class="chev">▶</span></summary>
+  <div class="pbody"><p>Without a review loop you won't remember Phase 2 by the time you reach Phase 6 — and the later phases quietly depend on the earlier ones. Two habits (~8 hr total): keep a <code>NOTES.md</code> per phase (three bullets a week — what clicked, what didn't), and at every phase boundary spend one hour re-deriving something from <i>two</i> phases back from a blank file. If you can't, that's the review loop doing its job.</p></div>
+</details>
+<details class="proto">
+  <summary><span class="pnum">P2</span><b>The Pre-Phase Audit</b><span class="gist">before any phase or track, ask Claude: "Audit Phase N first."</span><span class="chev">▶</span></summary>
+  <div class="pbody">
+    <p>The audit verifies every link, re-checks availability claims, and — critically — asks whether the <i>practice</i> changed, not just whether the link resolves. The real decay mode is a resource that loads perfectly while teaching a superseded default (chunking-heavy RAG written for 8k context windows; PPO-shaped RLHF written before GRPO; dense-model assumptions written before MoE went mainstream). Of each CORE item ask: <b>is this still how it's done, or just still online?</b> Then research what's genuinely new (filtered by the end-to-end-systems principle), propose a diff, update the files + this page.</p>
+    <p>Depth by volatility — <span class="tag c">STABLE</span> skip / 5-min check: Phases 0–2, math, Track D foundations, Track F &nbsp;·&nbsp; <span class="tag s">MEDIUM</span> light audit: Phase 3 Steps 1, 3–6; Phase 5; deep RL &nbsp;·&nbsp; <span class="tag f">FAST</span> full audit: Phase 3 Steps 2, 6–7; Phases 4, 4.5, 6; Tracks A, B, C, E, G.</p>
+    <p style="color:var(--faint);font-size:12px">Last full revision: Aug 2026 (structural review) — content gets refreshed exactly when it becomes relevant to you.</p>
+  </div>
+</details>
 
 <!-- ===================== RESOURCES ===================== -->
 <div class="part-div" id="library"><span class="pn">LIBRARY</span><h2>The Resource Library</h2></div>
