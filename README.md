@@ -17,11 +17,11 @@ Phase 4 doesn't need Phase 3, and Phase 5 doesn't need Phase 4. Take the descent
 |---|---|
 | **[ROADMAP.md](ROADMAP.md)** | The plan. A **spine** (Phases 0→3, in order), then **two independent descents** — ↑ products (Phase 4 → 4.5) and ↓ metal (Phase 5 → 6) — then **7 breadth tracks**. Numbered steps, not weeks: it's a map, not a calendar. Core/Survey/Reference tags and a milestone project per phase. |
 | **[RESOURCES.md](RESOURCES.md)** | The library: ~211 curated, link-verified resources across 25 sections. |
-| **[roadmap.html](roadmap.html)** | Interactive tracker: open locally in any browser — checkable tasks with progress saved in localStorage, every resource one click away. |
+| **[roadmap.html](roadmap.html)** | Interactive tracker: open locally in any browser (or via the Vercel deploy). A visual map of the stack with the spine forking into its two descents, checkable tasks with progress saved in localStorage, a field-manual "how to use" section — rules, dependency/budget reference panels, and the two protocols — and every resource one click away. |
 
 ## How this was built
 
-Researched and assembled with Claude (Aug 2026): parallel research agents gathered and link-verified resources per stack layer, then the plan went through four rounds of adversarial review — schedule realism, data/eval discipline, production coverage, and frontier currency — with every factual claim independently verified. A fifth structural review (Aug 2026) audited it for coverage gaps rather than dead links — adding the modern-architecture/scaling-laws, RLVR, coding-agents and training-practice steps plus Track G — then reshaped it from a 34-week line into a spine plus two independent descents, and refreshed the fast-moving sections to mid-2026 material.
+Researched and assembled with Claude (Aug 2026): parallel research agents gathered and link-verified resources per stack layer, then the plan went through four rounds of adversarial review — schedule realism, data/eval discipline, production coverage, and frontier currency — with every factual claim independently verified. A fifth structural review (Aug 2026) audited it for coverage gaps rather than dead links — adding the modern-architecture/scaling-laws, RLVR, coding-agents and training-practice steps plus Track G — then reshaped it from a 34-week line into a spine plus two independent descents, and refreshed the fast-moving sections to mid-2026 material. A follow-up design pass simplified the tracker page: a drawn fork for the "which descent first?" choice and a restructured how-to section (rule cards, reference panels, collapsible protocols).
 
 ## Keeping it current
 
